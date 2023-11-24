@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/kami/.Trash/projet/programme/projetXmas/projetXmas.csproj",
+      "projectUniqueName": "/Users/kami/Geerlings-Ilie/programme/projetXmas/projetXmas.csproj",
       "projectName": "projetXmas",
-      "projectPath": "/Users/kami/.Trash/projet/programme/projetXmas/projetXmas.csproj",
+      "projectPath": "/Users/kami/Geerlings-Ilie/programme/projetXmas/projetXmas.csproj",
       "packagesPath": "/Users/kami/.nuget/packages/",
-      "outputPath": "/Users/kami/.Trash/projet/programme/projetXmas/obj/",
+      "outputPath": "/Users/kami/Geerlings-Ilie/programme/projetXmas/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/kami/.nuget/NuGet/NuGet.Config"

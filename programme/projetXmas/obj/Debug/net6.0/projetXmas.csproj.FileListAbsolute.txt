@@ -1,0 +1,15 @@
+/Users/kami/Geerlings-Ilie/programme/projetXmas/bin/Debug/net6.0/projetXmas
+/Users/kami/Geerlings-Ilie/programme/projetXmas/bin/Debug/net6.0/projetXmas.deps.json
+/Users/kami/Geerlings-Ilie/programme/projetXmas/bin/Debug/net6.0/projetXmas.runtimeconfig.json
+/Users/kami/Geerlings-Ilie/programme/projetXmas/bin/Debug/net6.0/projetXmas.dll
+/Users/kami/Geerlings-Ilie/programme/projetXmas/bin/Debug/net6.0/projetXmas.pdb
+/Users/kami/Geerlings-Ilie/programme/projetXmas/obj/Debug/net6.0/projetXmas.csproj.AssemblyReference.cache
+/Users/kami/Geerlings-Ilie/programme/projetXmas/obj/Debug/net6.0/projetXmas.GeneratedMSBuildEditorConfig.editorconfig
+/Users/kami/Geerlings-Ilie/programme/projetXmas/obj/Debug/net6.0/projetXmas.AssemblyInfoInputs.cache
+/Users/kami/Geerlings-Ilie/programme/projetXmas/obj/Debug/net6.0/projetXmas.AssemblyInfo.cs
+/Users/kami/Geerlings-Ilie/programme/projetXmas/obj/Debug/net6.0/projetXmas.csproj.CoreCompileInputs.cache
+/Users/kami/Geerlings-Ilie/programme/projetXmas/obj/Debug/net6.0/projetXmas.dll
+/Users/kami/Geerlings-Ilie/programme/projetXmas/obj/Debug/net6.0/refint/projetXmas.dll
+/Users/kami/Geerlings-Ilie/programme/projetXmas/obj/Debug/net6.0/projetXmas.pdb
+/Users/kami/Geerlings-Ilie/programme/projetXmas/obj/Debug/net6.0/projetXmas.genruntimeconfig.cache
+/Users/kami/Geerlings-Ilie/programme/projetXmas/obj/Debug/net6.0/ref/projetXmas.dll
