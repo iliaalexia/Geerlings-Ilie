@@ -27,8 +27,7 @@ char[,] SymboleMatrice(char[,] matrice)
     matrice[ligne, colonne] = '*';
     return matrice;
 }
-
-Console.WriteLine(SymboleMatrice(Matrice(4)));
+char[,] tab1 = SymboleMatrice(Matrice(4));
 
 
 
