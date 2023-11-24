@@ -19,17 +19,17 @@ char[,] tab = Matrice(4);
 
 
 //programme placant un symbole dans la matrice dans une position aléatoire
-/*char[,] SymboleMatrice(char[,] matrice)
+char[,] SymboleMatrice(char[,] matrice)
 {
-    Random aleatoire= new Random();
-    int ligne= aleatoire.Next(0, matrice.Length);
-    int colonne= aleatoire.Next(0, matrice.Length);
-    matrice[ligne, colonne]='*';
+    Random aleatoire = new Random();
+    int ligne = aleatoire.Next(0, matrice.Length);
+    int colonne = aleatoire.Next(0, matrice.Length);
+    matrice[ligne, colonne] = '*';
     return matrice;
 }
 
 Console.WriteLine(SymboleMatrice(Matrice(4)));
-*/
+
 
 
 //programme affichant la matrice avec un joli design
