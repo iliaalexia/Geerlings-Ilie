@@ -1,6 +1,7 @@
 ﻿//programme creant une matrice rempli d'espaces de taille choisi par l'utilisateur
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
+using System.Reflection;
 
 char[,] Matrice(int taille)
 {
@@ -45,8 +46,6 @@ void AfficherMatrice(char[,] tab)
                 Console.Write("|");
                 Console.WriteLine();
             }
-
-
         }
     }
 }
@@ -72,19 +71,94 @@ for (int i = 0; i < nbCoups; i++)
 {
     Console.WriteLine("Deplacez les bonbons grace aux touches 8 (↑), 4(<--), 2(↓) et 6(→):");
     int deplacement = Convert.ToInt32(Console.ReadLine()!);
-    switch (deplacement)
+    for (int j = 0; j < 4; j++)
     {
-        case 8:
-        //chercher cases ou se trouvent les bonbons et les deplacer en position [0,j]
-        case 4:
-        //chercher cases ou se trouvent les bonbons et les deplacer en position [i,0]
-        case 2:
-        //chercher cases ou se trouvent les bonbons et les deplacer en position [3,j]
-        case 6:
-        //chercher cases ou se trouvent les bonbons et les deplacer en position [i,3]
-        default:
-            break;
-    }
+        switch (deplacement)
+        {
+            case 8:
+                //chercher cases ou se trouvent les bonbons et les deplacer en position [0,j]
+                for (int k = 0; k < 4; k++)
+                {
+                    if (matriceDeJeu[3 - j, k] == '*' && matriceDeJeu[3 - j, k + 1] == matriceDeJeu[3 - j, k])
+                    {
+                        matriceDeJeu[3 - j, k] = ' ';
+                        matriceDeJeu[3 - j, k + 1] = ' ';
+                        matriceDeJeu[0, k] = '@';
+                        AfficherMatrice(matriceDeJeu);
+                    }
+                    else if (matriceDeJeu[3 - j, k] == '*')
+                    {
+                        matriceDeJeu[3 - j, k] = ' ';
+                        matriceDeJeu[0, k] = '*';
+                    }
+                }
+                break;
 
+            case 4:
+                //chercher cases ou se trouvent les bonbons et les deplacer en position [i,0]
+                for (int k = 1; k < 5; k++)
+                {
+                    if (matriceDeJeu[j, 4 - k] == '*' && matriceDeJeu[j, 4 - k - 1] == matriceDeJeu[j, 4 - k])
+                    {
+                        matriceDeJeu[j, 4 - k] = ' ';
+                        matriceDeJeu[j, 4 - k - 1] = ' ';
+                        matriceDeJeu[j, 0] = '@';
+
+                    }
+                    else if (matriceDeJeu[j, 3 - k] == '*')
+                    {
+                        matriceDeJeu[j, 3 - k] = ' ';
+                        matriceDeJeu[j, 0] = '*';
+                    }
+                }
+                break;
+
+            case 2:
+                //chercher cases ou se trouvent les bonbons et les deplacer en position [3,j]
+                for (int k = 0; k < 4; k++)
+                {
+                    if (matriceDeJeu[j, k] == '*' && matriceDeJeu[j, k] == matriceDeJeu[j + 1, k])
+                    {
+                        matriceDeJeu[j, k] = ' ';
+                        matriceDeJeu[j + 1, k] = ' ';
+                        matriceDeJeu[3, k] = '@';
+                        AfficherMatrice(matriceDeJeu);
+                    }
+                    else if (matriceDeJeu[j, k] == '*')
+                    {
+                        matriceDeJeu[j, k] = ' ';
+                        matriceDeJeu[3, k] = '*';
+                    }
+                }
+                break;
+
+            case 6:
+                //chercher cases ou se trouvent les bonbons et les deplacer en position [i,3]
+                for (int k = 0; k < 4; k++)
+                {
+                    if (matriceDeJeu[j, k] == '*' && matriceDeJeu[j, k + 1] == matriceDeJeu[j, k])
+                    {
+                        matriceDeJeu[j, k] = ' ';
+                        matriceDeJeu[j, k + 1] = ' ';
+                        matriceDeJeu[j, 3] = '@';
+                        AfficherMatrice(matriceDeJeu);
+                    }
+                    else if (matriceDeJeu[j, k] == '*')
+                    {
+                        matriceDeJeu[j, k] = ' ';
+                        matriceDeJeu[j, 3] = '*';
+                    }
+                }
+                break;
+
+            default:
+                break;
+        }
+    }
+    int l = aleatoire.Next(0, 4);
+    int c = aleatoire.Next(0, 4);
+    matriceDeJeu[l, c] = '*';
+    AfficherMatrice(matriceDeJeu);
 }
+
 
