@@ -89,14 +89,13 @@ Console.WriteLine("--------------------------------------------");
 Console.WriteLine("Choissisez le nombre de coups autorisés:");
 int nbCoups = Convert.ToInt32(Console.ReadLine()!);
 Random aleatoire = new Random();
-int[,] matriceDeJeuEntiers = SymboleMatrice2(MatriceEntiers(4));  //on place le premier bonbon dans une case aléatoire
-matriceDeJeuEntiers = SymboleMatrice2(matriceDeJeuEntiers);        //on place le deuxième bonbon dans une case aléatoire
+int[,] matriceDeJeuEntiers = SymboleMatrice2(MatriceEntiers(4));    //on place le premier bonbon dans une case aléatoire
+matriceDeJeuEntiers = SymboleMatrice2(matriceDeJeuEntiers);         //on place le deuxième bonbon dans une case aléatoire
 Console.WriteLine();
 Console.WriteLine();
 Console.WriteLine("Voici votre grille de jeu de départ:");
 Console.WriteLine("------------------------------------");
-AfficherMatrice(ConversionMatrice(matriceDeJeuEntiers));
-int score = 0;
+AfficherMatrice(ConversionMatrice(matriceDeJeuEntiers));            //affichage de la matrice de départ
 for (int i = 0; i < nbCoups; i++)
 {
     Console.WriteLine();
@@ -132,7 +131,6 @@ for (int i = 0; i < nbCoups; i++)
     }
     Console.WriteLine();
     AfficherMatrice(ConversionMatrice(SymboleMatrice2(matriceDeJeuEntiers)));
-    score++;
 }
 
 
@@ -201,7 +199,7 @@ void MoveRight(int[,] tab)
             if (tab[l, c] != 0)
             {
                 int colonne = c;
-                while (colonne < 3 && tab[l, colonne] == 0)
+                while (colonne < 3 && tab[l, colonne + 1] == 0)
                 {
                     tab[l, colonne + 1] = tab[l, colonne];
                     tab[l, colonne] = 0;
@@ -228,7 +226,7 @@ void MoveDown(int[,] tab)
             if (tab[l, c] != 0)
             {
                 int ligne = l;
-                while (ligne < 3 && tab[ligne, c] == 0)
+                while (ligne < 3 && tab[ligne + 1, c] == 0)
                 {
                     tab[ligne + 1, c] = tab[ligne, c];
                     tab[ligne, c] = 0;
@@ -245,7 +243,7 @@ void MoveDown(int[,] tab)
 }
 
 
-//programme qui convertit une matrice d'entiers en matrice de caractères
+//programme qui convertit une matrice d'entiers en matrice de caractères et qui compte le score du joueur
 char[,] ConversionMatrice(int[,] tab)
 {
     int score = 0;
