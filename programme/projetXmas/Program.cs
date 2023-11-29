@@ -43,12 +43,17 @@ char[,] SymboleMatrice(char[,] matrice)
 }
 
 
-//programme placant un 1 dans la matrice sur une position aléatoire
+//programme placant un 2 dans la matrice sur une position aléatoire
 int[,] SymboleMatrice2(int[,] matrice)
 {
     Random aleatoire = new Random();
     int ligne = aleatoire.Next(0, matrice.GetLength(0));
     int colonne = aleatoire.Next(0, matrice.GetLength(1));
+    while (matrice[ligne, colonne] != 0)
+    {
+        ligne = aleatoire.Next(0, matrice.GetLength(0));
+        colonne = aleatoire.Next(0, matrice.GetLength(1));
+    }
     matrice[ligne, colonne] = 2;
     return matrice;
 }
@@ -71,24 +76,6 @@ void AfficherMatrice(char[,] tab)
     }
 }
 
-//programme affichant une matrice d'entiers
-void AfficherMatriceEntiers(int[,] tab)
-{
-    for (int i = 0; i < tab.GetLength(0); i++)
-    {
-        for (int j = 0; j < tab.GetLength(1); j++)
-        {
-            Console.Write($"| {tab[i, j]} ");
-            if (j == tab.GetLength(1) - 1)
-            {
-                Console.Write("|");
-                Console.WriteLine();
-            }
-        }
-    }
-}
-
-//AfficherMatrice(Matrice(4));
 
 //programme du jeu
 Console.WriteLine("Est-ce que vous connaissez les règles du jeu? Repondez par oui ou non");
@@ -104,11 +91,15 @@ int nbCoups = Convert.ToInt32(Console.ReadLine()!);
 Random aleatoire = new Random();
 int[,] matriceDeJeuEntiers = SymboleMatrice2(MatriceEntiers(4));  //on place le premier bonbon dans une case aléatoire
 matriceDeJeuEntiers = SymboleMatrice2(matriceDeJeuEntiers);        //on place le deuxième bonbon dans une case aléatoire
+Console.WriteLine();
+Console.WriteLine();
 Console.WriteLine("Voici votre grille de jeu de départ:");
+Console.WriteLine("------------------------------------");
 AfficherMatrice(ConversionMatrice(matriceDeJeuEntiers));
 int score = 0;
 for (int i = 0; i < nbCoups; i++)
 {
+    Console.WriteLine();
     Console.WriteLine("Deplacez les bonbons grace aux touches 8 (↑), 4(<--), 2(↓) et 6(→):");
     int deplacement = Convert.ToInt32(Console.ReadLine()!);
     for (int j = 0; j < 4; j++)
@@ -139,13 +130,9 @@ for (int i = 0; i < nbCoups; i++)
                 break;
         }
     }
-    int l = aleatoire.Next(0, 4);
-    int c = aleatoire.Next(0, 4);
-    if (matriceDeJeuEntiers[l, c] == 0)
-        matriceDeJeuEntiers[l, c] = 2;
-    else if (l < 3 && c < 3 && matriceDeJeuEntiers[l + 1, c + 1] != 0)
-        matriceDeJeuEntiers[l + 1, c + 1] = 2;
-    AfficherMatrice(ConversionMatrice(matriceDeJeuEntiers));
+    Console.WriteLine();
+    AfficherMatrice(ConversionMatrice(SymboleMatrice2(matriceDeJeuEntiers)));
+    score++;
 }
 
 
@@ -189,13 +176,13 @@ void MoveLeft(int[,] tab)
                 int colonne = c;
                 while (colonne > 0 && tab[l, colonne - 1] == 0)
                 {
-                    tab[l, colonne - 1] = tab[l, colonne];
+                    tab[l, colonne - 1] = tab[l, colonne];      //on deplace l'entier d'une colonne vers la gauche 
                     tab[l, colonne] = 0;
                     colonne--;
                 }
                 if (colonne > 0 && tab[l, colonne - 1] == tab[l, colonne])
                 {
-                    tab[l, colonne - 1] *= 2;
+                    tab[l, colonne - 1] *= 2;           //si les deux entiers cote a cote sont egaux, alors on les "rassemble"
                     tab[l, colonne] = 0;
                 }
             }
@@ -220,7 +207,7 @@ void MoveRight(int[,] tab)
                     tab[l, colonne] = 0;
                     colonne++;
                 }
-                if (colonne < 3 && tab[l, colonne] == tab[l, colonne + 1])
+                if (colonne < 3 && tab[l, colonne + 1] == tab[l, colonne])
                 {
                     tab[l, colonne + 1] *= 2;
                     tab[l, colonne] = 0;
@@ -247,7 +234,7 @@ void MoveDown(int[,] tab)
                     tab[ligne, c] = 0;
                     ligne++;
                 }
-                if (ligne < 3 && tab[ligne, c] == tab[ligne + 1, c])
+                if (ligne < 3 && tab[ligne + 1, c] == tab[ligne, c])
                 {
                     tab[ligne + 1, c] *= 2;
                     tab[ligne, c] = 0;
@@ -261,6 +248,7 @@ void MoveDown(int[,] tab)
 //programme qui convertit une matrice d'entiers en matrice de caractères
 char[,] ConversionMatrice(int[,] tab)
 {
+    int score = 0;
     char[,] matriceJeu = new char[tab.GetLength(0), tab.GetLength(1)];
     for (int i = 0; i < tab.GetLength(0); i++)
     {
@@ -278,24 +266,28 @@ char[,] ConversionMatrice(int[,] tab)
                 case 2:
                     {
                         matriceJeu[i, j] = '*';
+                        score++;
                         break;
                     }
 
                 case 4:
                     {
                         matriceJeu[i, j] = '@';
+                        score += 3;
                         break;
                     }
 
                 case 8:
                     {
                         matriceJeu[i, j] = 'o';
+                        score += 7;
                         break;
                     }
 
                 case 16:
                     {
                         matriceJeu[i, j] = 'J';
+                        score += 15;
                         break;
                     }
 
@@ -305,5 +297,9 @@ char[,] ConversionMatrice(int[,] tab)
             }
         }
     }
+    Console.WriteLine("---------------------------------");
+    Console.WriteLine($"Votre score est égal à {score}");
+    Console.WriteLine("---------------------------------");
+    Console.WriteLine();
     return matriceJeu;
 }
