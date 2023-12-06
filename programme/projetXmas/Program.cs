@@ -21,6 +21,10 @@ int[,] MatriceEntiers(int taille)
 //programme placant un 2 dans la matrice sur une position aléatoire
 int[,] SymboleMatrice2(int[,] matrice)
 {
+    if (VerificationMatrice(matrice) == true)
+    {
+        return matrice;
+    }
     Random aleatoire = new Random();
     int ligne = aleatoire.Next(0, matrice.GetLength(0));
     int colonne = aleatoire.Next(0, matrice.GetLength(1));
@@ -70,7 +74,7 @@ Console.WriteLine();
 Console.WriteLine();
 Console.WriteLine("Voici votre grille de jeu de départ:");
 Console.WriteLine("------------------------------------");
-AfficherMatrice(ConversionMatrice(matriceDeJeuEntiers));            //affichage de la matrice de départ
+AfficherMatrice(ConversionMatrice(matriceDeJeuEntiers));          //affichage de la matrice de départ
 for (int i = 0; i < nbCoups; i++)
 {
     Console.WriteLine();
@@ -104,6 +108,12 @@ for (int i = 0; i < nbCoups; i++)
     }
     Console.WriteLine();
     AfficherMatrice(ConversionMatrice(SymboleMatrice2(matriceDeJeuEntiers)));
+    if (VerificationMatrice(matriceDeJeuEntiers) == true)
+    {
+        Console.WriteLine();
+        Console.WriteLine("Fin du jeu.");
+        break;
+    }
 }
 
 
@@ -126,7 +136,10 @@ void MoveUp(int[,] tab)
                 }
                 if (ligne > 0 && tab[ligne - 1, c] == tab[ligne, c])
                 {
-                    tab[ligne - 1, c] *= 2;
+                    if (tab[ligne - 1, c] != 16)
+                    {
+                        tab[ligne - 1, c] *= 2;
+                    }
                     tab[ligne, c] = 0;
                 }
             }
@@ -153,7 +166,10 @@ void MoveLeft(int[,] tab)
                 }
                 if (colonne > 0 && tab[l, colonne - 1] == tab[l, colonne])
                 {
-                    tab[l, colonne - 1] *= 2;           //si les deux entiers cote a cote sont egaux, alors on les "rassemble"
+                    if (tab[l, colonne - 1] != 16)
+                    {
+                        tab[l, colonne - 1] *= 2;           //si les deux entiers cote a cote sont egaux, alors on les "rassemble"
+                    }
                     tab[l, colonne] = 0;
                 }
             }
@@ -180,7 +196,10 @@ void MoveRight(int[,] tab)
                 }
                 if (colonne < 3 && tab[l, colonne + 1] == tab[l, colonne])
                 {
-                    tab[l, colonne + 1] *= 2;
+                    if (tab[l, colonne + 1] != 16)
+                    {
+                        tab[l, colonne + 1] *= 2;
+                    }
                     tab[l, colonne] = 0;
                 }
             }
@@ -207,7 +226,10 @@ void MoveDown(int[,] tab)
                 }
                 if (ligne < 3 && tab[ligne + 1, c] == tab[ligne, c])
                 {
-                    tab[ligne + 1, c] *= 2;
+                    if (tab[ligne + 1, c] != 16)
+                    {
+                        tab[ligne + 1, c] *= 2;
+                    }
                     tab[ligne, c] = 0;
                 }
             }
@@ -273,4 +295,34 @@ char[,] ConversionMatrice(int[,] tab)
     Console.WriteLine("---------------------------------");
     Console.WriteLine();
     return matriceJeu;
+}
+
+
+//programme permettant de verifier si la grille est bloquée
+bool VerificationMatrice(int[,] tab)
+{
+    int[,] tab2 = new int[tab.GetLength(0), tab.GetLength(1)];
+    tab2 = tab;
+    for (int i = 0; i < tab.GetLength(0); i++)
+    {
+        for (int j = 0; j < tab.GetLength(1); j++)
+        {
+            if (tab[i, j] == 0)
+            {
+                return false;
+            }
+        }
+    }
+    MoveDown(tab2);
+    MoveLeft(tab2);
+    MoveRight(tab2);
+    MoveUp(tab2);
+    if (tab == tab2)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
