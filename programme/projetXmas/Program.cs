@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
 using System.Reflection;
 
-//programme créant une matrice rempli de 0
+//programme créant une matrice remplie de 0
 int[,] MatriceEntiers(int taille)
 {
     int[,] matriceJeu = new int[taille, taille];
@@ -26,14 +26,14 @@ int[,] SymboleMatrice2(int[,] matrice)
         return matrice;
     }
     Random aleatoire = new Random();
-    int ligne = aleatoire.Next(0, matrice.GetLength(0));
-    int colonne = aleatoire.Next(0, matrice.GetLength(1));
-    while (matrice[ligne, colonne] != 0)
+    int ligne = aleatoire.Next(0, matrice.GetLength(0));        //on donne un indice aléatoire pour la ligne compris entre 0 et (la taille de la matrice)-1
+    int colonne = aleatoire.Next(0, matrice.GetLength(1));      //on donne un indice aléatoire pour la colonne compris entre 0 et (la taille de la matrice)-1
+    while (matrice[ligne, colonne] != 0)                        //on verifie si cette position n'est pas prise
     {
-        ligne = aleatoire.Next(0, matrice.GetLength(0));
+        ligne = aleatoire.Next(0, matrice.GetLength(0));        //si elle est prise on change les indices de ligne et de colonne
         colonne = aleatoire.Next(0, matrice.GetLength(1));
     }
-    matrice[ligne, colonne] = 2;
+    matrice[ligne, colonne] = 2;                                //on introduit "un bonbon"
     return matrice;
 }
 
@@ -45,10 +45,10 @@ void AfficherMatrice(char[,] tab)
     {
         for (int j = 0; j < tab.GetLength(1); j++)
         {
-            Console.Write($"| {tab[i, j]} ");
+            Console.Write($"| {tab[i, j]} ");   //on affiche le début de la grille de jeu
             if (j == tab.GetLength(1) - 1)
             {
-                Console.Write("|");
+                Console.Write("|");             //on affiche la dernière barre de la grille du jeu
                 Console.WriteLine();
             }
         }
@@ -79,42 +79,45 @@ for (int i = 0; i < nbCoups; i++)
 {
     Console.WriteLine();
     Console.WriteLine("Deplacez les bonbons grace aux touches 8 (↑), 4(<--), 2(↓) et 6(→):");
-    int deplacement = Convert.ToInt32(Console.ReadLine()!);
+    int deplacement = Convert.ToInt32(Console.ReadLine()!);        //on convertit les données rentrées par l'utilisateur
     switch (deplacement)
     {
         case 8:
-            //chercher cases ou se trouvent les bonbons et les deplacer en position [0,j]
+            //chercher cases ou se trouvent les bonbons et les deplacer le plus proche possible de la position [0,j]
             MoveUp(matriceDeJeuEntiers);
             break;
 
         case 4:
-            //chercher cases ou se trouvent les bonbons et les deplacer en position [i,0]
+            //chercher cases ou se trouvent les bonbons et les deplacer le plus proche possible de la position [i,0]
             MoveLeft(matriceDeJeuEntiers);
             break;
 
         case 2:
-            //chercher cases ou se trouvent les bonbons et les deplacer en position [3,j]
+            //chercher cases ou se trouvent les bonbons et les deplacer le plus proche possible de la position [3,j]
             MoveDown(matriceDeJeuEntiers);
             break;
 
         case 6:
-            //chercher cases ou se trouvent les bonbons et les deplacer en position [i,3]
+            //chercher cases ou se trouvent les bonbons et les deplacer le plus proche possible de la position [i,3]
             MoveRight(matriceDeJeuEntiers);
             break;
 
         default:
+            Console.WriteLine("Nombre rentré faux.");
             break;
 
     }
     Console.WriteLine();
-    AfficherMatrice(ConversionMatrice(SymboleMatrice2(matriceDeJeuEntiers)));
-    if (VerificationMatrice(matriceDeJeuEntiers) == true)
+    AfficherMatrice(ConversionMatrice(SymboleMatrice2(matriceDeJeuEntiers)));       //on affiche la matrice après avoir déplacé les bonbons
+    if (VerificationMatrice(matriceDeJeuEntiers) == true)                           //on verifie si il y a un blocage dans la grille
     {
         Console.WriteLine();
-        Console.WriteLine("Fin du jeu.");
+        Console.WriteLine("Fin du jeu. Il y a un blocage dans la grille.");
         break;
     }
 }
+Console.WriteLine();
+Console.WriteLine("Vous avez atteint votre nombre de coups maximale.");
 
 
 
