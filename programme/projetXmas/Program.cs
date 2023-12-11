@@ -57,7 +57,7 @@ Console.WriteLine("Est-ce que vous connaissez les règles du jeu? Repondez par o
 string reponse = Console.ReadLine()!;
 
 if (reponse == "non" || reponse == "Non")
-    Console.WriteLine("Le but du jeu est de déplacer les bonbons dans la grille du jeu afin qu'ils se rencontrent et se transforment dans le treat supérieur! Après chaque coup joué, un nouveau bonbon est introduit dans la grille. Le jeu s'arrête une fois que vous aviez atteint le nombre de coups maximale ou qu'il y ait un blocage dans la grille. Facile!");
+    Console.WriteLine("Le but du jeu est de déplacer les bonbons dans la grille du jeu afin qu'ils se rencontrent et se transforment dans le treat supérieur! Après chaque coup joué, un nouveau bonbon est introduit dans la grille. Le jeu s'arrête une fois que vous avez atteint le nombre de coups maximum ou lorsque le grille est bloquée. Facile! Maintenant, à vous de jouer !");
 else
     Console.WriteLine("Parfait! Commencons le jeu");
 Console.WriteLine("--------------------------------------------");
@@ -272,4 +272,5 @@ char[,] ConversionMatrice(int[,] tab)
     Console.WriteLine($"Votre score est égal à {score}.");
     Console.WriteLine("---------------------------------");
     Console.WriteLine();
-    return matriceJeu
+    return matriceJeu;
+}
