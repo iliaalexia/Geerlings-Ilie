@@ -3,19 +3,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
 using System.Reflection;
 
-char[,] Matrice(int taille)
-{
-    char[,] matriceJeu = new char[taille, taille];
-    for (int i = 0; i < taille; i++)
-    {
-        for (int j = 0; j < taille; j++)
-        {
-            matriceJeu[i, j] = ' ';
-        }
-    }
-    return matriceJeu;
-}
-
 //programme créant une matrice rempli de 0
 int[,] MatriceEntiers(int taille)
 {
@@ -28,18 +15,6 @@ int[,] MatriceEntiers(int taille)
         }
     }
     return matriceJeu;
-}
-
-
-
-//programme placant un symbole dans la matrice dans une position aléatoire
-char[,] SymboleMatrice(char[,] matrice)
-{
-    Random aleatoire = new Random();
-    int ligne = aleatoire.Next(0, matrice.GetLength(0));
-    int colonne = aleatoire.Next(0, matrice.GetLength(1));
-    matrice[ligne, colonne] = '*';
-    return matrice;
 }
 
 
@@ -101,33 +76,31 @@ for (int i = 0; i < nbCoups; i++)
     Console.WriteLine();
     Console.WriteLine("Deplacez les bonbons grace aux touches 8 (↑), 4(<--), 2(↓) et 6(→):");
     int deplacement = Convert.ToInt32(Console.ReadLine()!);
-    for (int j = 0; j < 4; j++)
+    switch (deplacement)
     {
-        switch (deplacement)
-        {
-            case 8:
-                //chercher cases ou se trouvent les bonbons et les deplacer en position [0,j]
-                MoveUp(matriceDeJeuEntiers);
-                break;
+        case 8:
+            //chercher cases ou se trouvent les bonbons et les deplacer en position [0,j]
+            MoveUp(matriceDeJeuEntiers);
+            break;
 
-            case 4:
-                //chercher cases ou se trouvent les bonbons et les deplacer en position [i,0]
-                MoveLeft(matriceDeJeuEntiers);
-                break;
+        case 4:
+            //chercher cases ou se trouvent les bonbons et les deplacer en position [i,0]
+            MoveLeft(matriceDeJeuEntiers);
+            break;
 
-            case 2:
-                //chercher cases ou se trouvent les bonbons et les deplacer en position [3,j]
-                MoveDown(matriceDeJeuEntiers);
-                break;
+        case 2:
+            //chercher cases ou se trouvent les bonbons et les deplacer en position [3,j]
+            MoveDown(matriceDeJeuEntiers);
+            break;
 
-            case 6:
-                //chercher cases ou se trouvent les bonbons et les deplacer en position [i,3]
-                MoveRight(matriceDeJeuEntiers);
-                break;
+        case 6:
+            //chercher cases ou se trouvent les bonbons et les deplacer en position [i,3]
+            MoveRight(matriceDeJeuEntiers);
+            break;
 
-            default:
-                break;
-        }
+        default:
+            break;
+
     }
     Console.WriteLine();
     AfficherMatrice(ConversionMatrice(SymboleMatrice2(matriceDeJeuEntiers)));
@@ -296,7 +269,7 @@ char[,] ConversionMatrice(int[,] tab)
         }
     }
     Console.WriteLine("---------------------------------");
-    Console.WriteLine($"Votre score est égal à {score}");
+    Console.WriteLine($"Votre score est égal à {score}.");
     Console.WriteLine("---------------------------------");
     Console.WriteLine();
     return matriceJeu
