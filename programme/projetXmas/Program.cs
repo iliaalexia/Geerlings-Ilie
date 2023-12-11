@@ -11,7 +11,7 @@ int[,] MatriceEntiers(int taille)
     {
         for (int j = 0; j < taille; j++)
         {
-            matriceJeu[i, j] = 0;
+            matriceJeu[i, j] = 0;   //on parcourt tout le tableau et on met en chaque position un 0
         }
     }
     return matriceJeu;
@@ -61,7 +61,7 @@ Console.WriteLine("Est-ce que vous connaissez les règles du jeu? Repondez par o
 string reponse = Console.ReadLine()!;
 
 if (reponse == "non" || reponse == "Non")
-    Console.WriteLine("Le but du jeu est de déplacer les bonbons dans la grille du jeu afin qu'ils se rencontrent et se transforment dans le treat supérieur! Après chaque coup joué, un nouveau bonbon est introduit dans la grille. Le jeu s'arrête une fois que vous avez atteint le nombre de coups maximum ou lorsque le grille est bloquée. Facile! Maintenant, à vous de jouer !");
+    Console.WriteLine("Le but du jeu est de déplacer les bonbons dans la grille du jeu afin qu'ils se rencontrent et se transforment dans le treat supérieur! Après chaque coup joué, un nouveau bonbon est introduit dans la grille. Le jeu s'arrête une fois que vous aviez atteint le nombre de coups maximale ou qu'il y ait un blocage dans la grille. Facile!");
 else
     Console.WriteLine("Parfait! Commencons le jeu");
 Console.WriteLine("--------------------------------------------");
@@ -137,12 +137,9 @@ void MoveUp(int[,] tab)
                     tab[ligne, c] = 0;
                     ligne--;
                 }
-                if (ligne > 0 && tab[ligne - 1, c] == tab[ligne, c])
+                if (ligne > 0 && tab[ligne - 1, c] == tab[ligne, c] && tab[ligne - 1, c] != 16)
                 {
-                    if (tab[ligne - 1, c] != 16)
-                    {
-                        tab[ligne - 1, c] *= 2;
-                    }
+                    tab[ligne - 1, c] *= 2;          //si les deux entiers cote a cote sont egaux, alors on les "rassemble"
                     tab[ligne, c] = 0;
                 }
             }
@@ -167,13 +164,10 @@ void MoveLeft(int[,] tab)
                     tab[l, colonne] = 0;
                     colonne--;
                 }
-                if (colonne > 0 && tab[l, colonne - 1] == tab[l, colonne])
+                if (colonne > 0 && tab[l, colonne - 1] == tab[l, colonne] && tab[l, colonne - 1] != 16)
                 {
-                    if (tab[l, colonne - 1] != 16)
-                    {
-                        tab[l, colonne - 1] *= 2;           //si les deux entiers cote a cote sont egaux, alors on les "rassemble"
-                    }
-                    tab[l, colonne] = 0;
+                    tab[l, colonne - 1] *= 2;           //si les deux entiers cote a cote sont egaux, alors on les "rassemble"
+                    tab[l, colonne] = 0;       
                 }
             }
         }
@@ -197,13 +191,10 @@ void MoveRight(int[,] tab)
                     tab[l, colonne] = 0;
                     colonne++;
                 }
-                if (colonne < 3 && tab[l, colonne + 1] == tab[l, colonne])
+                if (colonne < 3 && tab[l, colonne + 1] == tab[l, colonne] && tab[l, colonne + 1] != 16)
                 {
-                    if (tab[l, colonne + 1] != 16)
-                    {
-                        tab[l, colonne + 1] *= 2;
-                    }
-                    tab[l, colonne] = 0;
+                    tab[l, colonne + 1] *= 2;    //si les deux entiers cote a cote sont egaux, alors on les "rassemble"
+                    tab[l, colonne] = 0; 
                 }
             }
         }
@@ -227,12 +218,9 @@ void MoveDown(int[,] tab)
                     tab[ligne, c] = 0;
                     ligne++;
                 }
-                if (ligne < 3 && tab[ligne + 1, c] == tab[ligne, c])
+                if (ligne < 3 && tab[ligne + 1, c] == tab[ligne, c] && tab[ligne + 1, c] != 16)
                 {
-                    if (tab[ligne + 1, c] != 16)
-                    {
-                        tab[ligne + 1, c] *= 2;
-                    }
+                    tab[ligne + 1, c] *= 2;    //si les deux entiers cote a cote sont egaux, alors on les "rassemble"
                     tab[ligne, c] = 0;
                 }
             }
@@ -306,26 +294,26 @@ bool VerificationMatrice(int[,] tab)
 {
     int[,] tab2 = new int[tab.GetLength(0), tab.GetLength(1)];
     tab2 = tab;
-    for (int i = 0; i < tab.GetLength(0); i++)
+    for (int i = 0; i < tab.GetLength(0); i++)  //on verifie si la matrice contient des 0
     {
         for (int j = 0; j < tab.GetLength(1); j++)
         {
             if (tab[i, j] == 0)
             {
-                return false;
+                return false;       //si elle contient des 0 alors il n'y a pas de blocage
             }
         }
     }
-    MoveDown(tab2);
+    MoveDown(tab2);        //sinon on effectue chaque deplacement possible sur une copie de la matrice d'origine
     MoveLeft(tab2);
     MoveRight(tab2);
     MoveUp(tab2);
-    if (tab == tab2)
+    if (tab == tab2)       //et on fait une comparaison entre les deux
     {
-        return true;
+        return true;       //si elles sont pareilles alors il y a un blocage
     }
     else
     {
-        return false;
+        return false;      //si elles sont différentes alors non
     }
 }
