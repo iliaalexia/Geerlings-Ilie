@@ -61,14 +61,12 @@ Console.WriteLine("Connaissez-vous les règles du jeu ? Repondez par oui ou non"
 string reponse = Console.ReadLine()!;
 
 if (reponse == "non" || reponse == "Non")
-<<<<<<< HEAD
-    Console.WriteLine("Le but du jeu est de déplacer les bonbons dans la grille du jeu afin qu'ils se rencontrent et se transforment dans le treat supérieur! Après chaque coup joué, un nouveau bonbon est introduit dans la grille. Le jeu s'arrête une fois que vous avez atteint le nombre de coups maximum ou lorsque la grille est remplie de bonbons. Facile! Maintenant, à vous de jouer !");
-=======
-    Console.WriteLine("Le but du jeu est de déplacer les bonbons dans la grille du jeu afin qu'ils se rencontrent et se transforment dans le treat supérieur! Après chaque coup joué, un nouveau bonbon est introduit dans la grille. Le jeu s'arrête une fois que vous aviez atteint le nombre de coups maximale ou qu'il y ait un blocage dans la grille. Facile!");
->>>>>>> 50be7c9e3b4954deb1e7d7fb89944af14b8baf68
+
+     Console.WriteLine("Le but du jeu est de déplacer les bonbons dans la grille du jeu afin qu'ils se rencontrent et se transforment dans le treat supérieur! Après chaque coup joué, un nouveau bonbon est introduit dans la grille. Le jeu s'arrête une fois que vous avez atteint le nombre de coups maximum ou lorsque la grille est remplie de bonbons. Facile! Maintenant, à vous de jouer !");
+
 else
     Console.WriteLine("Parfait! Commencons le jeu");
-Console.WriteLine("--------------------------------------------");
+Console.WriteLine("----------------------------------------------------------------------------------------");
 Console.WriteLine("Choissisez le nombre de coups autorisés:");
 int nbCoups = Convert.ToInt32(Console.ReadLine()!);
 Random aleatoire = new Random();
@@ -77,12 +75,12 @@ matriceDeJeuEntiers = SymboleMatrice2(matriceDeJeuEntiers);         //on place l
 Console.WriteLine();
 Console.WriteLine();
 Console.WriteLine("Voici votre grille de jeu de départ:");
-Console.WriteLine("------------------------------------");
+Console.WriteLine("----------------------------------------------------------------------------------------");
 AfficherMatrice(ConversionMatrice(matriceDeJeuEntiers));          //affichage de la matrice de départ
 for (int i = 0; i < nbCoups; i++)
 {
     Console.WriteLine();
-    Console.WriteLine("Deplacez les bonbons grace aux touches 8 (↑), 4(<--), 2(↓) et 6(→):");
+    Console.WriteLine("Déplacez les bonbons grâce aux touches 8(↑), 4(<--), 2(↓) et 6(→):");
     int deplacement = Convert.ToInt32(Console.ReadLine()!);        //on convertit les données rentrées par l'utilisateur
     switch (deplacement)
     {
@@ -107,7 +105,7 @@ for (int i = 0; i < nbCoups; i++)
             break;
 
         default:
-            Console.WriteLine("Nombre rentré faux.");
+            Console.WriteLine("Nombre rentré incorrect: Utilisez les commandes 8(↑), 4(<--), 2(↓) ou 6(→).");
             break;
 
     }
@@ -285,6 +283,7 @@ char[,] ConversionMatrice(int[,] tab)
             }
         }
     }
+    Console.WriteLine();
     Console.WriteLine("---------------------------------");
     Console.WriteLine($"Votre score est égal à {score}.");
     Console.WriteLine("---------------------------------");
