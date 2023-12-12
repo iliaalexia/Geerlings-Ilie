@@ -80,7 +80,7 @@ for (int i = 0; i < nbCoups; i++)
     Console.WriteLine();
     Console.WriteLine("Deplacez les bonbons grace aux touches 8 (↑), 4(<--), 2(↓) et 6(→):");
     int deplacement = Convert.ToInt32(Console.ReadLine()!);        //on convertit les données rentrées par l'utilisateur
-    switch (deplacement)
+    switch (deplacement)        
     {
         case 8:
             //chercher cases ou se trouvent les bonbons et les deplacer le plus proche possible de la position [0,j]
@@ -117,7 +117,66 @@ for (int i = 0; i < nbCoups; i++)
     }
 }
 Console.WriteLine();
-Console.WriteLine("Vous avez atteint votre nombre de coups maximale.");
+Console.WriteLine("VOUS AVEZ ATTEINT VOTRE NOMBRE DE COUPS MAXIMALE. Voulez- vous ajoutez des coups? Repondez par oui ou non");
+string coupSup= Console.ReadLine()!;
+if (coupSup=="oui" || coupSup=="Oui")
+{
+    Console.WriteLine("Afin d'obtenir des coups supplémentaires vous devez répondre à l'enigme suivante:");
+    Console.WriteLine("Girafe = 3, Éléphant = 3, Hippopotame = 5, Lion = ... ?");  
+}
+
+int enigme=Convert.ToInt32(Console.ReadLine()!);
+if (enigme==2)
+{
+    Console.WriteLine();
+    Console.WriteLine();
+    Console.WriteLine("Vous avez obtenu 5 coups supplémentaires!");
+    AfficherMatrice(ConversionMatrice(matriceDeJeuEntiers));
+    for (int i = 0; i < 5; i++)
+    {
+        Console.WriteLine();
+        Console.WriteLine("Deplacez les bonbons grace aux touches 8 (↑), 4(<--), 2(↓) et 6(→):");
+        int deplacement = Convert.ToInt32(Console.ReadLine()!);        //on convertit les données rentrées par l'utilisateur
+        switch (deplacement)        
+        {
+            case 8:
+            //chercher cases ou se trouvent les bonbons et les deplacer le plus proche possible de la position [0,j]
+            MoveUp(matriceDeJeuEntiers);
+            break;
+
+            case 4:
+            //chercher cases ou se trouvent les bonbons et les deplacer le plus proche possible de la position [i,0]
+            MoveLeft(matriceDeJeuEntiers);
+            break;
+
+            case 2:
+            //chercher cases ou se trouvent les bonbons et les deplacer le plus proche possible de la position [3,j]
+            MoveDown(matriceDeJeuEntiers);
+            break;
+
+            case 6:
+            //chercher cases ou se trouvent les bonbons et les deplacer le plus proche possible de la position [i,3]
+            MoveRight(matriceDeJeuEntiers);
+            break;
+
+            default:
+            Console.WriteLine("Nombre rentré faux.");
+            break;
+
+        }
+        Console.WriteLine();
+        AfficherMatrice(ConversionMatrice(SymboleMatrice2(matriceDeJeuEntiers)));       //on affiche la matrice après avoir déplacé les bonbons
+        if (VerificationMatrice(matriceDeJeuEntiers) == true)                           //on verifie si il y a un blocage dans la grille
+        {
+            Console.WriteLine();
+            Console.WriteLine("Fin du jeu. Il y a un blocage dans la grille.");
+            break;
+        }
+    }
+    Console.WriteLine();
+    Console.WriteLine("Fin du jeu. Vous avez épuisé votre nombre de coups.");
+}
+
 
 
 
@@ -139,7 +198,7 @@ void MoveUp(int[,] tab)
                 }
                 if (ligne > 0 && tab[ligne - 1, c] == tab[ligne, c] && tab[ligne - 1, c] != 16)
                 {
-                    tab[ligne - 1, c] *= 2;          //si les deux entiers cote a cote sont egaux, alors on les "rassemble"
+                    tab[ligne - 1, c] *= 2;          //si les deux entiers cote a cote sont egaux et sont différent de 'J', alors on les "rassemble"
                     tab[ligne, c] = 0;
                 }
             }
@@ -166,7 +225,7 @@ void MoveLeft(int[,] tab)
                 }
                 if (colonne > 0 && tab[l, colonne - 1] == tab[l, colonne] && tab[l, colonne - 1] != 16)
                 {
-                    tab[l, colonne - 1] *= 2;           //si les deux entiers cote a cote sont egaux, alors on les "rassemble"
+                    tab[l, colonne - 1] *= 2;           //si les deux entiers cote a cote sont egaux et sont pas egal a 'J', alors on les "rassemble"
                     tab[l, colonne] = 0;       
                 }
             }
@@ -187,13 +246,13 @@ void MoveRight(int[,] tab)
                 int colonne = c;
                 while (colonne < 3 && tab[l, colonne + 1] == 0)
                 {
-                    tab[l, colonne + 1] = tab[l, colonne];
-                    tab[l, colonne] = 0;
-                    colonne++;
+                    tab[l, colonne + 1] = tab[l, colonne];      //on deplace l'entier d'une colonne vers la droite
+                    tab[l, colonne] = 0;                        //on met la position du bonbon dans la colonne d'avant a 0
+                    colonne++;                                  //on refait la meme avec les deux colonnes suivantes doncon augmente l'indice de la colonne
                 }
                 if (colonne < 3 && tab[l, colonne + 1] == tab[l, colonne] && tab[l, colonne + 1] != 16)
                 {
-                    tab[l, colonne + 1] *= 2;    //si les deux entiers cote a cote sont egaux, alors on les "rassemble"
+                    tab[l, colonne + 1] *= 2;    //si les deux entiers cote a cote sont egaux et ne sont pas le plus grand bonbon possible, alors on les "rassemble"
                     tab[l, colonne] = 0; 
                 }
             }
@@ -214,9 +273,9 @@ void MoveDown(int[,] tab)
                 int ligne = l;
                 while (ligne < 3 && tab[ligne + 1, c] == 0)
                 {
-                    tab[ligne + 1, c] = tab[ligne, c];
-                    tab[ligne, c] = 0;
-                    ligne++;
+                    tab[ligne + 1, c] = tab[ligne, c];  //on deplace le bonbon une ligne au dessus
+                    tab[ligne, c] = 0;                  //on met un 0 à la place du bonbon
+                    ligne++;                            //on fait de même pour les deux lignes suivantes
                 }
                 if (ligne < 3 && tab[ligne + 1, c] == tab[ligne, c] && tab[ligne + 1, c] != 16)
                 {
@@ -233,7 +292,7 @@ void MoveDown(int[,] tab)
 char[,] ConversionMatrice(int[,] tab)
 {
     int score = 0;
-    char[,] matriceJeu = new char[tab.GetLength(0), tab.GetLength(1)];
+    char[,] matriceJeu = new char[tab.GetLength(0), tab.GetLength(1)];  //on crée un nouveau tableau de caractères
     for (int i = 0; i < tab.GetLength(0); i++)
     {
         for (int j = 0; j < tab.GetLength(1); j++)
@@ -308,7 +367,7 @@ bool VerificationMatrice(int[,] tab)
     MoveLeft(tab2);
     MoveRight(tab2);
     MoveUp(tab2);
-    if (tab == tab2)       //et on fait une comparaison entre les deux
+    if (tab == tab2)       //et on fait une comparaison entre les deux tableaux
     {
         return true;       //si elles sont pareilles alors il y a un blocage
     }
