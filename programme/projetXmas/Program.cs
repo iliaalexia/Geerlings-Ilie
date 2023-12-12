@@ -137,7 +137,12 @@ for (int i = 0; i < nbCoups; i++)
     
 }
 Console.WriteLine();
+<<<<<<< HEAD
 Console.WriteLine("VOUS AVEZ ATTEINT VOTRE NOMBRE DE COUPS MAXIMALE. Voulez- vous ajoutez des coups? Repondez par oui ou non");
+=======
+Console.WriteLine("VOUS AVEZ ATTEINT VOTRE NOMBRE DE COUPS MAXIMALE.");
+Console.WriteLine("Voulez- vous ajoutez des coups? Repondez par oui ou non");
+>>>>>>> main
 string coupSup= Console.ReadLine()!;
 if (coupSup=="oui" || coupSup=="Oui")
 {
@@ -194,15 +199,19 @@ if (enigme==2)
         }
     }
     Console.WriteLine();
-    Console.WriteLine("Fin du jeu. Vous avez épuisé votre nombre de coups.");
+    Console.WriteLine("Vous avez atteint votre nombre de coups maximale, la partie est finie.");      
+    Console.WriteLine("Rejouez et faites un meilleur score !");  
 }
 
 
+<<<<<<< HEAD
 
 Console.WriteLine("Vous avez atteint votre nombre de coups maximale, la partie est finie.");      
 Console.WriteLine("Rejouez et faites un meilleur score !");  
 
 
+=======
+>>>>>>> main
 
 // programme qui permet de faire le deplacement en haut
 void MoveUp(int[,] tab)
@@ -316,9 +325,14 @@ void MoveDown(int[,] tab)
 char[,] ConversionMatrice(int[,] tab)
 
 {
+<<<<<<< HEAD
 
     int score =0;
     char[,] matriceJeu = new char[tab.GetLength(0), tab.GetLength(1)];
+=======
+    int score = 0;
+    char[,] matriceJeu = new char[tab.GetLength(0), tab.GetLength(1)];  //on crée un nouveau tableau de caractères
+>>>>>>> main
     for (int i = 0; i < tab.GetLength(0); i++)
     {
         for (int j = 0; j < tab.GetLength(1); j++)
