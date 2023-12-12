@@ -86,44 +86,40 @@ Console.WriteLine("-------------------------------------------------------------
 AfficherMatrice(ConversionMatrice(matriceDeJeuEntiers));          //affichage de la matrice de départ
 for (int i = 0; i < nbCoups; i++)
 {
-  int deplacement;
-      do
-     {
+    int deplacement=0;
+    do
+    {
+        Console.WriteLine();
+        Console.WriteLine("Déplacez les bonbons grâce aux touches 8(↑), 4(<--), 2(↓) et 6(→):");
+        deplacement = Convert.ToInt32(Console.ReadLine()!);        //on convertit les données rentrées par l'utilisateur en entier
+    } while (deplacement != 8 && deplacement != 4 && deplacement != 6 && deplacement != 2);
 
-         Console.WriteLine();
-         Console.WriteLine("Déplacez les bonbons grâce aux touches 8(↑), 4(<--), 2(↓) et 6(→):");
-         deplacement = Convert.ToInt32(Console.ReadLine()!);        //on convertit les données rentrées par l'utilisateur
-    
-     }
-    
-    while (deplacement != 8 && deplacement != 4 && deplacement != 6 && deplacement != 2);
+    switch (deplacement)
+    {
 
-        switch (deplacement)
-           {
+        case 8:
+        //chercher cases ou se trouvent les bonbons et les deplacer le plus proche possible de la position [0,j]
+        MoveUp(matriceDeJeuEntiers);
+        break;
 
-              case 8:
-                //chercher cases ou se trouvent les bonbons et les deplacer le plus proche possible de la position [0,j]
-                MoveUp(matriceDeJeuEntiers);
-                break;
+        case 4:
+        //chercher cases ou se trouvent les bonbons et les deplacer le plus proche possible de la position [i,0]
+        MoveLeft(matriceDeJeuEntiers);
+        break;
 
-              case 4:
-                //chercher cases ou se trouvent les bonbons et les deplacer le plus proche possible de la position [i,0]
-                MoveLeft(matriceDeJeuEntiers);
-                break;
+        case 2:
+        //chercher cases ou se trouvent les bonbons et les deplacer le plus proche possible de la position [3,j]
+        MoveDown(matriceDeJeuEntiers);
+        break;
 
-              case 2:
-                //chercher cases ou se trouvent les bonbons et les deplacer le plus proche possible de la position [3,j]
-                MoveDown(matriceDeJeuEntiers);
-                break;
+        case 6:
+        //chercher cases ou se trouvent les bonbons et les deplacer le plus proche possible de la position [i,3]
+        MoveRight(matriceDeJeuEntiers);
+        break;
 
-               case 6:
-                //chercher cases ou se trouvent les bonbons et les deplacer le plus proche possible de la position [i,3]
-                MoveRight(matriceDeJeuEntiers);
-                break;
-
-               default:
-                break;
-            }
+        default:
+        break;
+    }
     Console.WriteLine();
     AfficherMatrice(ConversionMatrice(SymboleMatrice2(matriceDeJeuEntiers)));       //on affiche la matrice après avoir déplacé les bonbons
     if (VerificationMatrice(matriceDeJeuEntiers) == true)                           //on verifie si il y a un blocage dans la grille
@@ -151,9 +147,14 @@ if (coupSup=="oui" || coupSup=="Oui")
         AfficherMatrice(ConversionMatrice(matriceDeJeuEntiers));
         for (int i = 0; i < 5; i++)
         {
-            Console.WriteLine();
-            Console.WriteLine("Deplacez les bonbons grace aux touches 8 (↑), 4(<--), 2(↓) et 6(→):");
-            int deplacement = Convert.ToInt32(Console.ReadLine()!);        //on convertit les données rentrées par l'utilisateur
+            int deplacement=0;
+            do
+            {
+                Console.WriteLine();
+                Console.WriteLine("Déplacez les bonbons grâce aux touches 8(↑), 4(<--), 2(↓) et 6(→):");
+                deplacement = Convert.ToInt32(Console.ReadLine()!);        //on convertit les données rentrées par l'utilisateur en entier
+            } while (deplacement != 8 && deplacement != 4 && deplacement != 6 && deplacement != 2);
+
             switch (deplacement)        
             {
                 case 8:
@@ -208,10 +209,6 @@ else if (coupSup=="non" || coupSup=="Non")
     Console.WriteLine();
     Console.WriteLine("Fin de la partie.");
 }
-
-
-
-
 
 
 // programme qui permet de faire le deplacement en haut
