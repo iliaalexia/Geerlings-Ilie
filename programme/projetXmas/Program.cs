@@ -11,7 +11,7 @@ int[,] MatriceEntiers(int taille)
     {
         for (int j = 0; j < taille; j++)
         {
-            matriceJeu[i, j] = 0;   //on parcourt tout le tableau et on met en chaque position un 0
+            matriceJeu[i, j] = 0;   //on parcourt tout le tableau et on met un 0 en chaque position 
         }
     }
     return matriceJeu;
@@ -28,7 +28,7 @@ int[,] SymboleMatrice2(int[,] matrice)
     Random aleatoire = new Random();
     int ligne = aleatoire.Next(0, matrice.GetLength(0));        //on donne un indice aléatoire pour la ligne compris entre 0 et (la taille de la matrice)-1
     int colonne = aleatoire.Next(0, matrice.GetLength(1));      //on donne un indice aléatoire pour la colonne compris entre 0 et (la taille de la matrice)-1
-    while (matrice[ligne, colonne] != 0)                        //on verifie si cette position n'est pas prise
+    while (matrice[ligne, colonne] != 0)                        //on verifie si cette position ne soit pas déjà occupée 
     {
         ligne = aleatoire.Next(0, matrice.GetLength(0));        //si elle est prise on change les indices de ligne et de colonne
         colonne = aleatoire.Next(0, matrice.GetLength(1));
@@ -57,28 +57,31 @@ void AfficherMatrice(char[,] tab)
 
 
 //programme du jeu
-Console.WriteLine("Est-ce que vous connaissez les règles du jeu? Repondez par oui ou non");
+Console.WriteLine("Connaissez-vous les règles du jeu ? Repondez par oui ou non.");
 string reponse = Console.ReadLine()!;
 
 if (reponse == "non" || reponse == "Non")
-    Console.WriteLine("Le but du jeu est de déplacer les bonbons dans la grille du jeu afin qu'ils se rencontrent et se transforment dans le treat supérieur! Après chaque coup joué, un nouveau bonbon est introduit dans la grille. Le jeu s'arrête une fois que vous aviez atteint le nombre de coups maximale ou qu'il y ait un blocage dans la grille. Facile!");
+{
+     Console.WriteLine("Le but du jeu est de déplacer les bonbons dans la grille du jeu afin qu'ils se rencontrent et se transforment dans le treat supérieur! Après chaque coup joué, un nouveau bonbon est introduit dans la grille. Le jeu s'arrête une fois que vous avez atteint le nombre de coups maximum ou lorsque la grille est remplie de bonbons. Facile! Maintenant, à vous de jouer !");
+}
 else
-    Console.WriteLine("Parfait! Commencons le jeu");
-Console.WriteLine("--------------------------------------------");
+    Console.WriteLine("Parfait! Commencons le jeu.");
+Console.WriteLine("----------------------------------------------------------------------------------------");
 Console.WriteLine("Choissisez le nombre de coups autorisés:");
 int nbCoups = Convert.ToInt32(Console.ReadLine()!);
+Console.WriteLine($"---> Vous avez choisi de jouer en {nbCoups} coups, c'est parti !");
 Random aleatoire = new Random();
 int[,] matriceDeJeuEntiers = SymboleMatrice2(MatriceEntiers(4));    //on place le premier bonbon dans une case aléatoire
 matriceDeJeuEntiers = SymboleMatrice2(matriceDeJeuEntiers);         //on place le deuxième bonbon dans une case aléatoire
 Console.WriteLine();
 Console.WriteLine();
 Console.WriteLine("Voici votre grille de jeu de départ:");
-Console.WriteLine("------------------------------------");
+Console.WriteLine("----------------------------------------------------------------------------------------");
 AfficherMatrice(ConversionMatrice(matriceDeJeuEntiers));          //affichage de la matrice de départ
 for (int i = 0; i < nbCoups; i++)
 {
     Console.WriteLine();
-    Console.WriteLine("Deplacez les bonbons grace aux touches 8 (↑), 4(<--), 2(↓) et 6(→):");
+    Console.WriteLine("Déplacez les bonbons grâce aux touches 8(↑), 4(<--), 2(↓) et 6(→):");
     int deplacement = Convert.ToInt32(Console.ReadLine()!);        //on convertit les données rentrées par l'utilisateur
     switch (deplacement)        
     {
@@ -103,20 +106,22 @@ for (int i = 0; i < nbCoups; i++)
             break;
 
         default:
-            Console.WriteLine("Nombre rentré faux.");
+            Console.WriteLine("----------------------Nombre rentré incorrect----------------------");
             break;
 
     }
-    Console.WriteLine();
-    AfficherMatrice(ConversionMatrice(SymboleMatrice2(matriceDeJeuEntiers)));       //on affiche la matrice après avoir déplacé les bonbons
+     Console.WriteLine();
+            AfficherMatrice(ConversionMatrice(SymboleMatrice2(matriceDeJeuEntiers)));       //on affiche la matrice après avoir déplacé les bonbons
+    
     if (VerificationMatrice(matriceDeJeuEntiers) == true)                           //on verifie si il y a un blocage dans la grille
     {
         Console.WriteLine();
-        Console.WriteLine("Fin du jeu. Il y a un blocage dans la grille.");
+        Console.WriteLine("Fin du jeu. La grille est remplie de bonbons !");
         break;
     }
 }
 Console.WriteLine();
+<<<<<<< HEAD
 Console.WriteLine("VOUS AVEZ ATTEINT VOTRE NOMBRE DE COUPS MAXIMALE. Voulez- vous ajoutez des coups? Repondez par oui ou non");
 string coupSup= Console.ReadLine()!;
 if (coupSup=="oui" || coupSup=="Oui")
@@ -178,6 +183,10 @@ if (enigme==2)
 }
 
 
+=======
+Console.WriteLine("Vous avez atteint votre nombre de coups maximale, la partie est finie.");      
+Console.WriteLine("Rejouez et faites un meilleur score !");  
+>>>>>>> refs/remotes/origin/main
 
 
 // programme qui permet de faire le deplacement en haut
@@ -290,9 +299,15 @@ void MoveDown(int[,] tab)
 
 //programme qui convertit une matrice d'entiers en matrice de caractères et qui compte le score du joueur
 char[,] ConversionMatrice(int[,] tab)
+
 {
+<<<<<<< HEAD
     int score = 0;
     char[,] matriceJeu = new char[tab.GetLength(0), tab.GetLength(1)];  //on crée un nouveau tableau de caractères
+=======
+    int score =0;
+    char[,] matriceJeu = new char[tab.GetLength(0), tab.GetLength(1)];
+>>>>>>> refs/remotes/origin/main
     for (int i = 0; i < tab.GetLength(0); i++)
     {
         for (int j = 0; j < tab.GetLength(1); j++)
@@ -340,6 +355,7 @@ char[,] ConversionMatrice(int[,] tab)
             }
         }
     }
+    Console.WriteLine();
     Console.WriteLine("---------------------------------");
     Console.WriteLine($"Votre score est égal à {score}.");
     Console.WriteLine("---------------------------------");
