@@ -177,8 +177,7 @@ if (coupSup=="oui" || coupSup=="Oui")
                 MoveRight(matriceDeJeuEntiers);
                 break;
 
-                default:
-                Console.WriteLine("Nombre rentré faux.");
+                default: 
                 break;
 
             }
@@ -281,6 +280,7 @@ void MoveRight(int[,] tab)
                     tab[l, colonne] = 0;                        //on met la position du bonbon dans la colonne d'avant a 0
                     colonne++;                                  //on refait la meme avec les deux colonnes suivantes doncon augmente l'indice de la colonne
                 }
+
                 if (colonne < 3 && tab[l, colonne + 1] == tab[l, colonne] && tab[l, colonne + 1] != 16)
                 {
                     tab[l, colonne + 1] *= 2;    //si les deux entiers cote a cote sont egaux et ne sont pas le plus grand bonbon possible, alors on les "rassemble"
@@ -321,7 +321,6 @@ void MoveDown(int[,] tab)
 
 //programme qui convertit une matrice d'entiers en matrice de caractères et qui compte le score du joueur
 char[,] ConversionMatrice(int[,] tab)
-
 {
     int score = 0;
     char[,] matriceJeu = new char[tab.GetLength(0), tab.GetLength(1)];  //on crée un nouveau tableau de caractères
@@ -404,6 +403,7 @@ bool VerificationMatrice(int[,] tab)
     {
         return true;       //si elles sont pareilles alors il y a un blocage
     }
+
     else
     {
         return false;      //si elles sont différentes alors non
