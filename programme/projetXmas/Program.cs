@@ -67,8 +67,11 @@ if (reponse == "non" || reponse == "Non")
 {
      Console.WriteLine("Le but du jeu est de déplacer les bonbons dans la grille du jeu afin qu'ils se rencontrent et se transforment dans le treat supérieur! Après chaque coup joué, un nouveau bonbon est introduit dans la grille. Le jeu s'arrête une fois que vous avez atteint le nombre de coups maximum ou lorsque la grille est remplie de bonbons. Facile! Maintenant, à vous de jouer !");
 }
+
 else
+{
     Console.WriteLine("Parfait! Commencons le jeu.");
+}
 Console.WriteLine("----------------------------------------------------------------------------------------");
 Console.WriteLine("Choissisez le nombre de coups autorisés:");
 int nbCoups = Convert.ToInt32(Console.ReadLine()!);
@@ -131,8 +134,6 @@ for (int i = 0; i < nbCoups; i++)
     {
         Console.WriteLine();
         Console.WriteLine("Fin de la partie. Le plateau de jeu est remplie de bonbons ... Rejouez et faites mieux !");
-
-      
     }
     
 }
@@ -144,6 +145,10 @@ if (coupSup=="oui" || coupSup=="Oui")
 {
     Console.WriteLine("Afin d'obtenir des coups supplémentaires vous devez répondre à l'enigme suivante:");
     Console.WriteLine("Girafe = 3, Éléphant = 3, Hippopotame = 5, Lion = ... ?");  
+}
+else if (coupSup=="non" || coupSup=="Non")
+{
+    Console.WriteLine("Fin de la partie.");
 }
 
 int enigme=Convert.ToInt32(Console.ReadLine()!);
@@ -202,15 +207,12 @@ if (enigme==2)
 
 
 
-
-
-
 // programme qui permet de faire le deplacement en haut
 void MoveUp(int[,] tab)
 {
-    for (int c = 0; c < 4; c++)
+    for (int c = 0; c < tab.GetLength(1); c++)
     {
-        for (int l = 1; l < 4; l++)
+        for (int l = 1; l < tab.GetLength(0); l++)
         {
             if (tab[l, c] != 0)
             {
@@ -235,9 +237,9 @@ void MoveUp(int[,] tab)
 //programme qui permet de faire le deplacement vers la gauche
 void MoveLeft(int[,] tab)
 {
-    for (int c = 1; c < 4; c++)
+    for (int c = 1; c < tab.GetLength(1); c++)
     {
-        for (int l = 0; l < 4; l++)
+        for (int l = 0; l < tab.GetLength(0); l++)
         {
             if (tab[l, c] != 0)
             {
@@ -262,9 +264,9 @@ void MoveLeft(int[,] tab)
 //programme qui permet le deplacement vers la droite
 void MoveRight(int[,] tab)
 {
-    for (int c = 0; c < 3; c++)
+    for (int c = 0; c < tab.GetLength(1)-1; c++)
     {
-        for (int l = 0; l < 4; l++)
+        for (int l = 0; l < tab.GetLength(0); l++)
         {
             if (tab[l, c] != 0)
             {
@@ -289,9 +291,9 @@ void MoveRight(int[,] tab)
 //programme qui permet le deplacement vers le bas
 void MoveDown(int[,] tab)
 {
-    for (int c = 0; c < 4; c++)
+    for (int c = 0; c < tab.GetLength(1); c++)
     {
-        for (int l = 0; l < 3; l++)
+        for (int l = 0; l < tab.GetLength(0)-1; l++)
         {
             if (tab[l, c] != 0)
             {
