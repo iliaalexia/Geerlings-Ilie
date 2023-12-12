@@ -130,7 +130,7 @@ for (int i = 0; i < nbCoups; i++)
     if (VerificationMatrice(matriceDeJeuEntiers) == true)                           //on verifie si il y a un blocage dans la grille
     {
         Console.WriteLine();
-        Console.WriteLine("Fin de la partie. Le plateau de jeu est remplie de bonbons ... Rejouez et faktes mieux !");
+        Console.WriteLine("Fin de la partie. Le plateau de jeu est remplie de bonbons ... Rejouez et faites mieux !");
 
       
     }
@@ -200,9 +200,6 @@ if (enigme==2)
 }
 
 
-
-Console.WriteLine("Vous avez atteint votre nombre de coups maximale, la partie est finie.");      
-Console.WriteLine("Rejouez et faites un meilleur score !");  
 
 
 
