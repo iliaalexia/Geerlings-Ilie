@@ -123,11 +123,7 @@ for (int i = 0; i < nbCoups; i++)
 
                default:
                 break;
-
             }
-    
-
-   
     Console.WriteLine();
     AfficherMatrice(ConversionMatrice(SymboleMatrice2(matriceDeJeuEntiers)));       //on affiche la matrice après avoir déplacé les bonbons
     if (VerificationMatrice(matriceDeJeuEntiers) == true)                           //on verifie si il y a un blocage dans la grille
@@ -143,66 +139,77 @@ Console.WriteLine("Voulez- vous ajoutez des coups? Repondez par oui ou non");
 string coupSup= Console.ReadLine()!;
 if (coupSup=="oui" || coupSup=="Oui")
 {
+    Console.WriteLine();
     Console.WriteLine("Afin d'obtenir des coups supplémentaires vous devez répondre à l'enigme suivante:");
     Console.WriteLine("Girafe = 3, Éléphant = 3, Hippopotame = 5, Lion = ... ?");  
+    int enigme=Convert.ToInt32(Console.ReadLine()!);
+    if (enigme==2)
+    {
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine("Vous avez obtenu 5 coups supplémentaires!");
+        AfficherMatrice(ConversionMatrice(matriceDeJeuEntiers));
+        for (int i = 0; i < 5; i++)
+        {
+            Console.WriteLine();
+            Console.WriteLine("Deplacez les bonbons grace aux touches 8 (↑), 4(<--), 2(↓) et 6(→):");
+            int deplacement = Convert.ToInt32(Console.ReadLine()!);        //on convertit les données rentrées par l'utilisateur
+            switch (deplacement)        
+            {
+                case 8:
+                //chercher cases ou se trouvent les bonbons et les deplacer le plus proche possible de la position [0,j]
+                MoveUp(matriceDeJeuEntiers);
+                break;
+
+                case 4:
+                //chercher cases ou se trouvent les bonbons et les deplacer le plus proche possible de la position [i,0]
+                MoveLeft(matriceDeJeuEntiers);
+                break;
+
+                case 2:
+                //chercher cases ou se trouvent les bonbons et les deplacer le plus proche possible de la position [3,j]
+                MoveDown(matriceDeJeuEntiers);
+                break;
+
+                case 6:
+                //chercher cases ou se trouvent les bonbons et les deplacer le plus proche possible de la position [i,3]
+                MoveRight(matriceDeJeuEntiers);
+                break;
+
+                default:
+                Console.WriteLine("Nombre rentré faux.");
+                break;
+
+            }
+            Console.WriteLine();
+            AfficherMatrice(ConversionMatrice(SymboleMatrice2(matriceDeJeuEntiers)));       //on affiche la matrice après avoir déplacé les bonbons
+            if (VerificationMatrice(matriceDeJeuEntiers) == true)                           //on verifie si il y a un blocage dans la grille
+            {
+                Console.WriteLine();
+                Console.WriteLine("Fin du jeu. Il y a un blocage dans la grille.");
+                break;
+            }
+        }
+        Console.WriteLine();
+        Console.WriteLine("Vous avez atteint votre nombre de coups maximale, la partie est finie.");      
+        Console.WriteLine("Rejouez et faites un meilleur score !");  
+    }
+
+    else
+    {
+        Console.WriteLine();
+        Console.WriteLine("Bien tenté mais c'est la mauvaise réponse. Recommencez une nouvelle partie!");
+        Console.WriteLine("----------------------------------------------------------------------------");
+    }
 }
+
 else if (coupSup=="non" || coupSup=="Non")
 {
+    Console.WriteLine();
     Console.WriteLine("Fin de la partie.");
 }
 
-int enigme=Convert.ToInt32(Console.ReadLine()!);
-if (enigme==2)
-{
-    Console.WriteLine();
-    Console.WriteLine();
-    Console.WriteLine("Vous avez obtenu 5 coups supplémentaires!");
-    AfficherMatrice(ConversionMatrice(matriceDeJeuEntiers));
-    for (int i = 0; i < 5; i++)
-    {
-        Console.WriteLine();
-        Console.WriteLine("Deplacez les bonbons grace aux touches 8 (↑), 4(<--), 2(↓) et 6(→):");
-        int deplacement = Convert.ToInt32(Console.ReadLine()!);        //on convertit les données rentrées par l'utilisateur
-        switch (deplacement)        
-        {
-            case 8:
-            //chercher cases ou se trouvent les bonbons et les deplacer le plus proche possible de la position [0,j]
-            MoveUp(matriceDeJeuEntiers);
-            break;
 
-            case 4:
-            //chercher cases ou se trouvent les bonbons et les deplacer le plus proche possible de la position [i,0]
-            MoveLeft(matriceDeJeuEntiers);
-            break;
-
-            case 2:
-            //chercher cases ou se trouvent les bonbons et les deplacer le plus proche possible de la position [3,j]
-            MoveDown(matriceDeJeuEntiers);
-            break;
-
-            case 6:
-            //chercher cases ou se trouvent les bonbons et les deplacer le plus proche possible de la position [i,3]
-            MoveRight(matriceDeJeuEntiers);
-            break;
-
-            default:
-            Console.WriteLine("Nombre rentré faux.");
-            break;
-
-        }
-        Console.WriteLine();
-        AfficherMatrice(ConversionMatrice(SymboleMatrice2(matriceDeJeuEntiers)));       //on affiche la matrice après avoir déplacé les bonbons
-        if (VerificationMatrice(matriceDeJeuEntiers) == true)                           //on verifie si il y a un blocage dans la grille
-        {
-            Console.WriteLine();
-            Console.WriteLine("Fin du jeu. Il y a un blocage dans la grille.");
-            break;
-        }
-    }
-    Console.WriteLine();
-    Console.WriteLine("Vous avez atteint votre nombre de coups maximale, la partie est finie.");      
-    Console.WriteLine("Rejouez et faites un meilleur score !");  
-}
 
 
 
