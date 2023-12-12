@@ -41,25 +41,27 @@ int[,] SymboleMatrice2(int[,] matrice)
 //programme affichant la matrice avec un joli design
 void AfficherMatrice(char[,] tab)
 {
-    Console.WriteLine("-------------");
+    Console.WriteLine("+--+--+--+--+");
     for (int i = 0; i < tab.GetLength(0); i++)
     {
         for (int j = 0; j < tab.GetLength(1); j++)
         {
-            Console.Write($"|{tab[i, j]} "); //on affiche le début de la grille de jeu
+            Console.Write($"|{tab[i, j]} ");                    //on affiche le début de la grille de jeu
             if (j == tab.GetLength(1) - 1)
-            {
-                Console.Write("|");             //on affiche la dernière barre de la grille du jeu
+            {   
+                Console.Write("|");                              //on affiche la dernière barre de la grille du jeu
                 Console.WriteLine();
 
             }  
         }
-        Console.WriteLine("-------------");
+
+        Console.WriteLine("+--+--+--+--+");                        
     }
 }
 
 
 //programme du jeu
+Console.WriteLine("Nous allons jouer au CANDYMIX !");
 Console.WriteLine("Connaissez-vous les règles du jeu ? Repondez par oui ou non.");
 string reponse = Console.ReadLine()!;
 
@@ -83,8 +85,10 @@ Console.WriteLine("-------------------------------------------------------------
 AfficherMatrice(ConversionMatrice(matriceDeJeuEntiers));          //affichage de la matrice de départ
 for (int i = 0; i < nbCoups; i++)
 {
-  int deplacement;
-      do
+    
+    Console.WriteLine($"Tour numero {i}");                      //affiche le nombre de tour auquel le joueur en est 
+    int deplacement;
+      do                                                        //boucle qui permet de réafficher la consigne si l'utilisation des commandes n'a pas ete respectee 
      {
 
          Console.WriteLine();
@@ -130,19 +134,23 @@ for (int i = 0; i < nbCoups; i++)
     if (VerificationMatrice(matriceDeJeuEntiers) == true)                           //on verifie si il y a un blocage dans la grille
     {
         Console.WriteLine();
-        Console.WriteLine("Fin de la partie. Le plateau de jeu est remplie de bonbons ... Rejouez et faktes mieux !");
+        Console.WriteLine("Fin de la partie. Le plateau de jeu est remplie de bonbons ... Rejouez et faites mieux !");
 
       
     }
     
 }
 Console.WriteLine();
-Console.WriteLine("VOUS AVEZ ATTEINT VOTRE NOMBRE DE COUPS MAXIMALE. Voulez- vous ajoutez des coups? Repondez par oui ou non");
+Console.WriteLine("La partie est finie ...VOUS AVEZ ATTEINT VOTRE NOMBRE DE COUPS MAXIMALE. Voulez- vous ajoutez des coups? Repondez par oui ou non");
 string coupSup= Console.ReadLine()!;
 if (coupSup=="oui" || coupSup=="Oui")
 {
     Console.WriteLine("Afin d'obtenir des coups supplémentaires vous devez répondre à l'enigme suivante:");
     Console.WriteLine("Girafe = 3, Éléphant = 3, Hippopotame = 5, Lion = ... ?");  
+}
+else 
+{
+    Console.WriteLine("Dommage... Refaites une partie et améliorez votre score !");
 }
 
 int enigme=Convert.ToInt32(Console.ReadLine()!);
@@ -150,7 +158,7 @@ if (enigme==2)
 {
     Console.WriteLine();
     Console.WriteLine();
-    Console.WriteLine("Vous avez obtenu 5 coups supplémentaires!");
+    Console.WriteLine("Bien joué ! Vous avez obtenu 5 coups supplémentaires!");
     AfficherMatrice(ConversionMatrice(matriceDeJeuEntiers));
     for (int i = 0; i < 5; i++)
     {
@@ -197,10 +205,6 @@ if (enigme==2)
     Console.WriteLine("Fin du jeu. Vous avez épuisé votre nombre de coups.");
 }
 
-
-
-Console.WriteLine("Vous avez atteint votre nombre de coups maximale, la partie est finie.");      
-Console.WriteLine("Rejouez et faites un meilleur score !");  
 
 
 
@@ -310,6 +314,7 @@ void MoveDown(int[,] tab)
         }
     }
 }
+
 
 
 //programme qui convertit une matrice d'entiers en matrice de caractères et qui compte le score du joueur
