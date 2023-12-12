@@ -8,19 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "/Users/ilie/.nuget/packages/": {}
+    "/Users/kami/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/ilie/Desktop/Geerlings-Ilie/programme/projetXmas/projetXmas.csproj",
+      "projectUniqueName": "/Users/kami/Geerlings-Ilie/programme/projetXmas/projetXmas.csproj",
       "projectName": "projetXmas",
-      "projectPath": "/Users/ilie/Desktop/Geerlings-Ilie/programme/projetXmas/projetXmas.csproj",
-      "packagesPath": "/Users/ilie/.nuget/packages/",
-      "outputPath": "/Users/ilie/Desktop/Geerlings-Ilie/programme/projetXmas/obj/",
+      "projectPath": "/Users/kami/Geerlings-Ilie/programme/projetXmas/projetXmas.csproj",
+      "packagesPath": "/Users/kami/.nuget/packages/",
+      "outputPath": "/Users/kami/Geerlings-Ilie/programme/projetXmas/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/ilie/.nuget/NuGet/NuGet.Config"
+        "/Users/kami/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
