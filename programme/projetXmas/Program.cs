@@ -41,12 +41,12 @@ int[,] SymboleMatrice2(int[,] matrice)
 //programme affichant la matrice avec un joli design
 void AfficherMatrice(char[,] tab)
 {
-    Console.WriteLine("-------------");
+    Console.WriteLine("+--+--+--+--+");
     for (int i = 0; i < tab.GetLength(0); i++)
     {
         for (int j = 0; j < tab.GetLength(1); j++)
         {
-            Console.Write($"|{tab[i, j]} "); //on affiche le début de la grille de jeu
+            Console.Write($"|{tab[i, j]} ");    //on affiche le début de la grille de jeu
             if (j == tab.GetLength(1) - 1)
             {
                 Console.Write("|");             //on affiche la dernière barre de la grille du jeu
@@ -54,7 +54,7 @@ void AfficherMatrice(char[,] tab)
 
             }  
         }
-        Console.WriteLine("-------------");
+        Console.WriteLine("+--+--+--+--+");
     }
 }
 
@@ -96,7 +96,6 @@ for (int i = 0; i < nbCoups; i++)
 
     switch (deplacement)
     {
-
         case 8:
         //chercher cases ou se trouvent les bonbons et les deplacer le plus proche possible de la position [0,j]
         MoveUp(matriceDeJeuEntiers);
@@ -126,8 +125,7 @@ for (int i = 0; i < nbCoups; i++)
     {
         Console.WriteLine();
         Console.WriteLine("Fin de la partie. Le plateau de jeu est remplie de bonbons ... Rejouez et faites mieux !");
-    }
-    
+    }   
 }
 Console.WriteLine();
 Console.WriteLine("VOUS AVEZ ATTEINT VOTRE NOMBRE DE COUPS MAXIMALE.");
@@ -226,6 +224,7 @@ void MoveUp(int[,] tab)
                     tab[ligne, c] = 0;
                     ligne--;
                 }
+
                 if (ligne > 0 && tab[ligne - 1, c] == tab[ligne, c] && tab[ligne - 1, c] != 16)
                 {
                     tab[ligne - 1, c] *= 2;          //si les deux entiers cote a cote sont egaux et sont différent de 'J', alors on les "rassemble"
@@ -335,7 +334,6 @@ char[,] ConversionMatrice(int[,] tab)
                         matriceJeu[i, j] = ' ';
                         break;
                     }
-
 
                 case 2:
                     {
