@@ -62,17 +62,24 @@ void AfficherMatrice(char[,] tab)
 
 //programme du jeu
 Console.WriteLine();
-Console.WriteLine("Bienvenu sur 🍭🍭🍭CANDYMIX🍭🍭🍭");
+Console.WriteLine("Bienvenue sur 🍭🍭🍭CANDYMIX🍭🍭🍭");
 Console.WriteLine("Connaissez-vous les règles du jeu ? Repondez par oui ou non.");
 string reponse = Console.ReadLine()!;
 
 if (reponse == "non" || reponse == "Non")
 {
-     Console.WriteLine("Le but du jeu est de déplacer les bonbons dans la grille du jeu afin qu'ils se rencontrent et se transforment dans le treat supérieur! Après chaque coup joué, un nouveau bonbon est introduit dans la grille. Le jeu s'arrête une fois que vous avez atteint le nombre de coups maximum ou lorsque la grille est remplie de bonbons. Facile! Maintenant, à vous de jouer !");
+    Console.WriteLine("Le but du jeu est de déplacer les bonbons dans la grille du jeu afin qu'ils se rencontrent et se transforment dans le treat supérieur! Après chaque coup joué, un nouveau bonbon est introduit dans la grille. Le jeu s'arrête une fois que vous avez atteint le nombre de coups maximum ou lorsque la grille est remplie de bonbons. Facile! Maintenant, à vous de jouer !");
 }
 
 else
+<<<<<<< HEAD
 Console.WriteLine("✨Parfait, c'est parti !✨");
+=======
+{
+    Console.WriteLine("✨Parfait, c'est parti !✨");
+}
+
+>>>>>>> kami
 Console.WriteLine();
 Console.WriteLine("🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄");
 Console.WriteLine("Choissisez le nombre de coups autorisés:");
@@ -86,8 +93,13 @@ Console.WriteLine("Voici votre plateau de jeu de départ");
 AfficherMatrice(ConversionMatrice(matriceDeJeuEntiers));          //affichage de la matrice de départ
 for (int i = 0; i < nbCoups; i++)
 {
+<<<<<<< HEAD
     int deplacement=0;
     do
+=======
+    int deplacement;
+    do                                                        //boucle qui permet de réafficher la consigne si l'utilisation des commandes n'a pas ete respectee 
+>>>>>>> kami
     {
         Console.WriteLine();
         Console.WriteLine("Déplacez les bonbons grâce aux touches 8(↑), 4(<--), 2(↓) et 6(→):");
@@ -120,6 +132,8 @@ for (int i = 0; i < nbCoups; i++)
         break;
     }
     Console.WriteLine();
+    Console.WriteLine($"Tour numero {i}");                      //affiche le nombre de tour auquel le joueur en est 
+    Console.WriteLine("-----------------");
     AfficherMatrice(ConversionMatrice(SymboleMatrice2(matriceDeJeuEntiers)));       //on affiche la matrice après avoir déplacé les bonbons
     if (VerificationMatrice(matriceDeJeuEntiers) == true)                           //on verifie si il y a un blocage dans la grille
     {
@@ -128,8 +142,11 @@ for (int i = 0; i < nbCoups; i++)
     }   
 }
 Console.WriteLine();
-Console.WriteLine("Fin de la partie 😢 VOUS AVEZ ATTEINT VOTRE NOMBRE DE COUPS MAXIMALE. Mais puisque c'est bientôt 🎄Noël🎄, nous avons une surprise pour vous.... Si vous voulez ajouter des coups, repondez par oui ou non");
-
+Console.WriteLine("Fin de la partie 😢");
+Console.WriteLine("VOUS AVEZ ATTEINT VOTRE NOMBRE DE COUPS MAXIMALE.");
+Console.WriteLine();
+Console.WriteLine("Mais puisque c'est bientôt 🎄Noël🎄, nous avons une surprise pour vous....");
+Console.WriteLine("ouiSi vous voulez ajouter des coups, vous pouvez! Si vous en voulez repondez par oui, sinon repondez par non.");
 string coupSup= Console.ReadLine()!;
 if (coupSup=="oui" || coupSup=="Oui")
 {
@@ -149,6 +166,7 @@ if (enigme==2)
     Console.WriteLine("⭐️⭐️⭐️Bien joué⭐️⭐️⭐️");
     Console.WriteLine("Vous avez obtenu 5 coups supplémentaires.");
     AfficherMatrice(ConversionMatrice(matriceDeJeuEntiers));
+<<<<<<< HEAD
     for (int i = 0; i < 5; i++)
     {
         Console.WriteLine();
@@ -156,6 +174,9 @@ if (enigme==2)
         Console.WriteLine("Vous avez obtenu 5 coups supplémentaires!");
         AfficherMatrice(ConversionMatrice(matriceDeJeuEntiers));
         for (int i = 0; i < 5; i++)
+=======
+        for (int j = 0; j < 5; j++)
+>>>>>>> kami
         {
             int deplacement=0;
             do
@@ -182,6 +203,7 @@ if (enigme==2)
                 MoveDown(matriceDeJeuEntiers);
                 break;
 
+<<<<<<< HEAD
                 case 6:
                 //chercher cases ou se trouvent les bonbons et les deplacer le plus proche possible de la position [i,3]
                 MoveRight(matriceDeJeuEntiers);
@@ -190,6 +212,11 @@ if (enigme==2)
                 default:
                 Console.WriteLine("❌Nombre rentré faux❌");
                 break;
+=======
+                default:
+                Console.WriteLine("❌Nombre rentré faux❌");
+                break;
+>>>>>>> kami
             }
             Console.WriteLine();
             AfficherMatrice(ConversionMatrice(SymboleMatrice2(matriceDeJeuEntiers)));       //on affiche la matrice après avoir déplacé les bonbons
@@ -203,8 +230,9 @@ if (enigme==2)
         Console.WriteLine();
         Console.WriteLine("Vous avez atteint votre nombre de coups maximale, la partie est finie.");      
         Console.WriteLine("Rejouez et faites un meilleur score !");  
-    }
+ }   
 
+<<<<<<< HEAD
     else
     {
         Console.WriteLine();
@@ -212,13 +240,22 @@ if (enigme==2)
         Console.WriteLine("----------------------------------------------------------------------------");
     }
 }
+=======
+>>>>>>> kami
 
-else if (coupSup=="non" || coupSup=="Non")
+else
 {
     Console.WriteLine();
+<<<<<<< HEAD
     Console.WriteLine("🍭Fin de la partie🍭");      
     Console.WriteLine("Rejouez et faites un meilleur score !");  
+=======
+    Console.WriteLine("Bien tenté mais c'est la mauvaise réponse. Recommencez une nouvelle partie!");
+    Console.WriteLine("----------------------------------------------------------------------------");
+>>>>>>> kami
 }
+Console.WriteLine();
+Console.WriteLine("🍭Fin de la partie🍭");      
 
 
 
@@ -234,15 +271,15 @@ void MoveUp(int[,] tab)
                 int ligne = l;
                 while (ligne > 0 && tab[ligne - 1, c] == 0)
                 {
-                    tab[ligne - 1, c] = tab[ligne, c];
-                    tab[ligne, c] = 0;
-                    ligne--;
+                    tab[ligne - 1, c] = tab[ligne, c];          //on déplace le bonbon d'une ligne vers le haut
+                    tab[ligne, c] = 0;                          //on met la case initiale du bonbon à 0
+                    ligne--;                                    //on met l'indice de la ligne de ou se situe le bonbon actuellement dans la variable 'ligne'
                 }
 
                 if (ligne > 0 && tab[ligne - 1, c] == tab[ligne, c] && tab[ligne - 1, c] != 16)
                 {
                     tab[ligne - 1, c] *= 2;          //si les deux entiers cote a cote sont egaux et sont différent de 'J', alors on les "rassemble"
-                    tab[ligne, c] = 0;
+                    tab[ligne, c] = 0;              //on met la case précendente à 0
                 }
             }
         }
