@@ -61,7 +61,8 @@ void AfficherMatrice(char[,] tab)
 
 
 //programme du jeu
-Console.WriteLine("Nous allons jouer au CANDYMIX !");
+Console.WriteLine();
+Console.WriteLine("Bienvenu sur 🍭🍭🍭CANDYMIX🍭🍭🍭");
 Console.WriteLine("Connaissez-vous les règles du jeu ? Repondez par oui ou non.");
 string reponse = Console.ReadLine()!;
 
@@ -70,18 +71,17 @@ if (reponse == "non" || reponse == "Non")
      Console.WriteLine("Le but du jeu est de déplacer les bonbons dans la grille du jeu afin qu'ils se rencontrent et se transforment dans le treat supérieur! Après chaque coup joué, un nouveau bonbon est introduit dans la grille. Le jeu s'arrête une fois que vous avez atteint le nombre de coups maximum ou lorsque la grille est remplie de bonbons. Facile! Maintenant, à vous de jouer !");
 }
 else
-    Console.WriteLine("Parfait! Commencons le jeu.");
-Console.WriteLine("----------------------------------------------------------------------------------------");
+Console.WriteLine("✨Parfait, c'est parti !✨");
+Console.WriteLine();
+Console.WriteLine("🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄");
 Console.WriteLine("Choissisez le nombre de coups autorisés:");
 int nbCoups = Convert.ToInt32(Console.ReadLine()!);
-Console.WriteLine($"---> Vous avez choisi de jouer en {nbCoups} coups, c'est parti !");
+Console.WriteLine($"✨Vous avez choisi de jouer en {nbCoups} coups, c'est parti !✨");
 Random aleatoire = new Random();
 int[,] matriceDeJeuEntiers = SymboleMatrice2(MatriceEntiers(4));    //on place le premier bonbon dans une case aléatoire
 matriceDeJeuEntiers = SymboleMatrice2(matriceDeJeuEntiers);         //on place le deuxième bonbon dans une case aléatoire
 Console.WriteLine();
-Console.WriteLine();
-Console.WriteLine("Voici votre plateau de jeu de départ:");
-Console.WriteLine("----------------------------------------------------------------------------------------");
+Console.WriteLine("Voici votre plateau de jeu de départ");
 AfficherMatrice(ConversionMatrice(matriceDeJeuEntiers));          //affichage de la matrice de départ
 for (int i = 0; i < nbCoups; i++)
 {
@@ -141,12 +141,12 @@ for (int i = 0; i < nbCoups; i++)
     
 }
 Console.WriteLine();
-Console.WriteLine("La partie est finie ...VOUS AVEZ ATTEINT VOTRE NOMBRE DE COUPS MAXIMALE. Voulez- vous ajoutez des coups? Repondez par oui ou non");
+Console.WriteLine("Fin de la partie 😢 VOUS AVEZ ATTEINT VOTRE NOMBRE DE COUPS MAXIMALE. Mais puisque c'est bientôt 🎄Noël🎄, nous avons une surprise pour vous.... Si vous voulez ajouter des coups, repondez par oui ou non");
 
 string coupSup= Console.ReadLine()!;
 if (coupSup=="oui" || coupSup=="Oui")
 {
-    Console.WriteLine("Afin d'obtenir des coups supplémentaires vous devez répondre à l'enigme suivante:");
+    Console.WriteLine("Pour gagner des coups supplémentaires, repondez à l'enigme suivante....");
     Console.WriteLine("Girafe = 3, Éléphant = 3, Hippopotame = 5, Lion = ... ?");  
 }
 else 
@@ -159,7 +159,8 @@ if (enigme==2)
 {
     Console.WriteLine();
     Console.WriteLine();
-    Console.WriteLine("Bien joué ! Vous avez obtenu 5 coups supplémentaires!");
+    Console.WriteLine("⭐️⭐️⭐️Bien joué⭐️⭐️⭐️");
+    Console.WriteLine("Vous avez obtenu 5 coups supplémentaires.");
     AfficherMatrice(ConversionMatrice(matriceDeJeuEntiers));
     for (int i = 0; i < 5; i++)
     {
@@ -189,7 +190,7 @@ if (enigme==2)
             break;
 
             default:
-            Console.WriteLine("Nombre rentré faux.");
+            Console.WriteLine("❌Nombre rentré faux❌");
             break;
 
         }
@@ -203,7 +204,7 @@ if (enigme==2)
         }
     }
     Console.WriteLine();
-    Console.WriteLine("Fin de la partie.");      
+    Console.WriteLine("🍭Fin de la partie🍭");      
     Console.WriteLine("Rejouez et faites un meilleur score !");  
 }
 
@@ -371,9 +372,9 @@ char[,] ConversionMatrice(int[,] tab)
         }
     }
     Console.WriteLine();
-    Console.WriteLine("---------------------------------");
-    Console.WriteLine($"Votre score est égal à {score}.");
-    Console.WriteLine("---------------------------------");
+    Console.WriteLine("⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️");
+    Console.WriteLine($"   Votre score est égal à {score}.");
+    Console.WriteLine("⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️");
     Console.WriteLine();
     return matriceJeu;
 }
