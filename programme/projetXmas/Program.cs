@@ -46,20 +46,31 @@ void AfficherMatrice(char[,] tab)
     {
         for (int j = 0; j < tab.GetLength(1); j++)
         {
+<<<<<<< HEAD
             Console.Write($"|{tab[i, j]} ");    //on affiche le début de la grille de jeu
+=======
+            Console.Write($"|{tab[i, j]} ");                    //on affiche le début de la grille de jeu
+>>>>>>> aae584ea684e1b183fe0bd2ae81dcdf1b1ee8aa7
             if (j == tab.GetLength(1) - 1)
-            {
-                Console.Write("|");             //on affiche la dernière barre de la grille du jeu
+            {   
+                Console.Write("|");                              //on affiche la dernière barre de la grille du jeu
                 Console.WriteLine();
 
             }  
         }
+<<<<<<< HEAD
         Console.WriteLine("+--+--+--+--+");
+=======
+
+        Console.WriteLine("+--+--+--+--+");                        
+>>>>>>> aae584ea684e1b183fe0bd2ae81dcdf1b1ee8aa7
     }
 }
 
 
 //programme du jeu
+Console.WriteLine();
+Console.WriteLine("Bienvenu sur 🍭🍭🍭CANDYMIX🍭🍭🍭");
 Console.WriteLine("Connaissez-vous les règles du jeu ? Repondez par oui ou non.");
 string reponse = Console.ReadLine()!;
 
@@ -69,23 +80,28 @@ if (reponse == "non" || reponse == "Non")
 }
 
 else
+<<<<<<< HEAD
 {
     Console.WriteLine("Parfait! Commencons le jeu.");
 }
 Console.WriteLine("----------------------------------------------------------------------------------------");
+=======
+Console.WriteLine("✨Parfait, c'est parti !✨");
+Console.WriteLine();
+Console.WriteLine("🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄");
+>>>>>>> aae584ea684e1b183fe0bd2ae81dcdf1b1ee8aa7
 Console.WriteLine("Choissisez le nombre de coups autorisés:");
 int nbCoups = Convert.ToInt32(Console.ReadLine()!);
-Console.WriteLine($"---> Vous avez choisi de jouer en {nbCoups} coups, c'est parti !");
+Console.WriteLine($"✨Vous avez choisi de jouer en {nbCoups} coups, c'est parti !✨");
 Random aleatoire = new Random();
 int[,] matriceDeJeuEntiers = SymboleMatrice2(MatriceEntiers(4));    //on place le premier bonbon dans une case aléatoire
 matriceDeJeuEntiers = SymboleMatrice2(matriceDeJeuEntiers);         //on place le deuxième bonbon dans une case aléatoire
 Console.WriteLine();
-Console.WriteLine();
-Console.WriteLine("Voici votre plateau de jeu de départ:");
-Console.WriteLine("----------------------------------------------------------------------------------------");
+Console.WriteLine("Voici votre plateau de jeu de départ");
 AfficherMatrice(ConversionMatrice(matriceDeJeuEntiers));          //affichage de la matrice de départ
 for (int i = 0; i < nbCoups; i++)
 {
+<<<<<<< HEAD
     int deplacement=0;
     do
     {
@@ -93,6 +109,13 @@ for (int i = 0; i < nbCoups; i++)
         Console.WriteLine("Déplacez les bonbons grâce aux touches 8(↑), 4(<--), 2(↓) et 6(→):");
         deplacement = Convert.ToInt32(Console.ReadLine()!);        //on convertit les données rentrées par l'utilisateur en entier
     } while (deplacement != 8 && deplacement != 4 && deplacement != 6 && deplacement != 2);
+=======
+    
+    Console.WriteLine($"Tour numero {i}");                      //affiche le nombre de tour auquel le joueur en est 
+    int deplacement;
+      do                                                        //boucle qui permet de réafficher la consigne si l'utilisation des commandes n'a pas ete respectee 
+     {
+>>>>>>> aae584ea684e1b183fe0bd2ae81dcdf1b1ee8aa7
 
     switch (deplacement)
     {
@@ -128,16 +151,36 @@ for (int i = 0; i < nbCoups; i++)
     }   
 }
 Console.WriteLine();
-Console.WriteLine("VOUS AVEZ ATTEINT VOTRE NOMBRE DE COUPS MAXIMALE.");
-Console.WriteLine("Voulez- vous ajoutez des coups? Repondez par oui ou non");
+Console.WriteLine("Fin de la partie 😢 VOUS AVEZ ATTEINT VOTRE NOMBRE DE COUPS MAXIMALE. Mais puisque c'est bientôt 🎄Noël🎄, nous avons une surprise pour vous.... Si vous voulez ajouter des coups, repondez par oui ou non");
+
 string coupSup= Console.ReadLine()!;
 if (coupSup=="oui" || coupSup=="Oui")
 {
+<<<<<<< HEAD
     Console.WriteLine();
     Console.WriteLine("Afin d'obtenir des coups supplémentaires vous devez répondre à l'enigme suivante:");
     Console.WriteLine("Girafe = 3, Éléphant = 3, Hippopotame = 5, Lion = ... ?");  
     int enigme=Convert.ToInt32(Console.ReadLine()!);
     if (enigme==2)
+=======
+    Console.WriteLine("Pour gagner des coups supplémentaires, repondez à l'enigme suivante....");
+    Console.WriteLine("Girafe = 3, Éléphant = 3, Hippopotame = 5, Lion = ... ?");  
+}
+else 
+{
+    Console.WriteLine("Dommage... Refaites une partie et améliorez votre score !");
+}
+
+int enigme=Convert.ToInt32(Console.ReadLine()!);
+if (enigme==2)
+{
+    Console.WriteLine();
+    Console.WriteLine();
+    Console.WriteLine("⭐️⭐️⭐️Bien joué⭐️⭐️⭐️");
+    Console.WriteLine("Vous avez obtenu 5 coups supplémentaires.");
+    AfficherMatrice(ConversionMatrice(matriceDeJeuEntiers));
+    for (int i = 0; i < 5; i++)
+>>>>>>> aae584ea684e1b183fe0bd2ae81dcdf1b1ee8aa7
     {
         Console.WriteLine();
         Console.WriteLine();
@@ -170,10 +213,16 @@ if (coupSup=="oui" || coupSup=="Oui")
                 MoveDown(matriceDeJeuEntiers);
                 break;
 
+<<<<<<< HEAD
                 case 6:
                 //chercher cases ou se trouvent les bonbons et les deplacer le plus proche possible de la position [i,3]
                 MoveRight(matriceDeJeuEntiers);
                 break;
+=======
+            default:
+            Console.WriteLine("❌Nombre rentré faux❌");
+            break;
+>>>>>>> aae584ea684e1b183fe0bd2ae81dcdf1b1ee8aa7
 
                 default: 
                 break;
@@ -199,6 +248,7 @@ if (coupSup=="oui" || coupSup=="Oui")
         Console.WriteLine("Bien tenté mais c'est la mauvaise réponse. Recommencez une nouvelle partie!");
         Console.WriteLine("----------------------------------------------------------------------------");
     }
+<<<<<<< HEAD
 }
 
 else if (coupSup=="non" || coupSup=="Non")
@@ -206,6 +256,13 @@ else if (coupSup=="non" || coupSup=="Non")
     Console.WriteLine();
     Console.WriteLine("Fin de la partie.");
 }
+=======
+    Console.WriteLine();
+    Console.WriteLine("🍭Fin de la partie🍭");      
+    Console.WriteLine("Rejouez et faites un meilleur score !");  
+}
+
+>>>>>>> aae584ea684e1b183fe0bd2ae81dcdf1b1ee8aa7
 
 
 // programme qui permet de faire le deplacement en haut
@@ -318,6 +375,7 @@ void MoveDown(int[,] tab)
 }
 
 
+
 //programme qui convertit une matrice d'entiers en matrice de caractères et qui compte le score du joueur
 char[,] ConversionMatrice(int[,] tab)
 {
@@ -370,9 +428,9 @@ char[,] ConversionMatrice(int[,] tab)
         }
     }
     Console.WriteLine();
-    Console.WriteLine("---------------------------------");
-    Console.WriteLine($"Votre score est égal à {score}.");
-    Console.WriteLine("---------------------------------");
+    Console.WriteLine("⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️");
+    Console.WriteLine($"   Votre score est égal à {score}.");
+    Console.WriteLine("⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️");
     Console.WriteLine();
     return matriceJeu;
 }
