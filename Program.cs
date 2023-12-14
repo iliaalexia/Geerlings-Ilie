@@ -41,13 +41,13 @@ int[,] SymboleMatrice2(int[,] matrice)
 //programme affichant la matrice avec un joli design
 void AfficherMatrice(char[,] tab)
 {
-    Console.WriteLine("+--+--+--+--+");
+    Console.WriteLine("+--+--+--+--+");                         //affiche la separation au dessus de la première ligne
     for (int i = 0; i < tab.GetLength(0); i++)
     {
         for (int j = 0; j < tab.GetLength(1); j++)
         {
             Console.Write($"|{tab[i, j]} ");                    //on affiche le début de la grille de jeu
-            if (j == tab.GetLength(1) - 1)
+            if (j == tab.GetLength(1) - 1)                      //si c'est le dernier élément de la ligne on affiche la barre toute a droite de la grille
             {
                 Console.Write("|");                              //on affiche la dernière barre de la grille du jeu
                 Console.WriteLine();
@@ -55,7 +55,7 @@ void AfficherMatrice(char[,] tab)
             }
         }
 
-        Console.WriteLine("+--+--+--+--+");
+        Console.WriteLine("+--+--+--+--+");                     //affiche les separations entre les lignes de la matrice
     }
 }
 
@@ -67,70 +67,72 @@ Console.WriteLine();
 Console.WriteLine("Connaissez-vous les règles du jeu ? Repondez par oui ou non.");
 string reponse = Console.ReadLine()!;
 
-if (reponse == "non" || reponse == "Non")
+if (reponse == "non" || reponse == "Non") //si le joueur connait pas les regles alors on les affiche
 {
     Console.WriteLine("Le but du jeu est de déplacer les bonbons dans la grille du jeu afin qu'ils se rencontrent et se transforment dans le treat supérieur! Après chaque coup joué, un nouveau bonbon est introduit dans la grille. Le jeu s'arrête une fois que vous avez atteint le nombre de coups maximum ou lorsque la grille est remplie de bonbons. Facile! Maintenant, à vous de jouer !");
 }
 
-else
+else            //si il les connait alors on commence le jeu
 {
     Console.WriteLine("✨Parfait, c'est parti !✨");
 }
 
-Console.WriteLine();
+Console.WriteLine();        //saut à la ligne
 Console.WriteLine("🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄");
-Console.WriteLine("Choissisez le nombre de coups autorisés:");
-int nbCoups = Convert.ToInt32(Console.ReadLine()!);
-Console.WriteLine($"✨Vous avez choisi de jouer en {nbCoups} coups, c'est parti !✨");
-Random aleatoire = new Random();
+Console.WriteLine("Choissisez le nombre de coups autorisés:");      //choix du nombre de coups
+int nbCoups = Convert.ToInt32(Console.ReadLine()!);                 //on enregistre la reponse du joueur et on le converti en entier
+Console.WriteLine($"✨Vous avez choisi de jouer en {nbCoups} coups, c'est parti !✨");  //on lui affiche le nombre de coups qu'il a choisi
+Random aleatoire = new Random();                                    //on crée une variable qui va tirer au hasard des entiers
 int[,] matriceDeJeuEntiers = SymboleMatrice2(MatriceEntiers(4));    //on place le premier bonbon dans une case aléatoire
 matriceDeJeuEntiers = SymboleMatrice2(matriceDeJeuEntiers);         //on place le deuxième bonbon dans une case aléatoire
 Console.WriteLine();
 Console.WriteLine("Voici votre plateau de jeu de départ");
-AfficherMatrice(ConversionMatrice(matriceDeJeuEntiers));          //affichage de la matrice de départ
+AfficherMatrice(ConversionMatrice(matriceDeJeuEntiers));            //affichage de la matrice de départ
 for (int i = 0; i < nbCoups; i++)
 {
     int deplacement;
-    do                                                        //boucle qui permet de réafficher la consigne si l'utilisation des commandes n'a pas ete respectee 
+    do                                                        //boucle qui permet de réafficher la consigne si l'utilisation des commandes n'a pas été respectée 
     {
         Console.WriteLine();
         Console.WriteLine("Déplacez les bonbons grâce aux touches 8(↑), 4(<--), 2(↓) et 6(→):");
         deplacement = Convert.ToInt32(Console.ReadLine()!);        //on convertit les données rentrées par l'utilisateur en entier
-    } while (deplacement != 8 && deplacement != 4 && deplacement != 6 && deplacement != 2);
+    } while (deplacement != 8 && deplacement != 4 && deplacement != 6 && deplacement != 2); //la boucle while s'arrête quand l'utilisateur rentre 2, 4, 6 ou 8 dans le terminal
 
-    switch (deplacement)
+    switch (deplacement) //comparaison est faite avec l'entier rentré par l'utilisateur dans le terminal
     {
-        case 8:
+        case 8: //si le joueur rentre 8 dans le terminal alors on déplace les bonbons vers le haut
             //chercher cases ou se trouvent les bonbons et les deplacer le plus proche possible de la position [0,j]
             MoveUp(matriceDeJeuEntiers);
             break;
 
-        case 4:
+        case 4: //si le joueur rentre 4 dans le terminal alors on déplace les bonbons vers la gauche
             //chercher cases ou se trouvent les bonbons et les deplacer le plus proche possible de la position [i,0]
             MoveLeft(matriceDeJeuEntiers);
             break;
 
-        case 2:
+        case 2: //si le joueur rentre 2 dans le terminal alors on déplace les bonbons vers le bas
             //chercher cases ou se trouvent les bonbons et les deplacer le plus proche possible de la position [3,j]
             MoveDown(matriceDeJeuEntiers);
             break;
 
-        case 6:
+        case 6: //si le joueur rentre 6 dans le terminal alors on déplace les bonbons vers la droite
             //chercher cases ou se trouvent les bonbons et les deplacer le plus proche possible de la position [i,3]
             MoveRight(matriceDeJeuEntiers);
             break;
 
-        default:
+        default: //si le joueur rentre autre chose que 2, 4, 6 ou 8 alors on sort de la boucle
             break;
     }
     Console.WriteLine();
+    Console.WriteLine("-----------------");
     Console.WriteLine($"Tour numero {i}");                      //affiche le nombre de tour auquel le joueur en est 
     Console.WriteLine("-----------------");
     AfficherMatrice(ConversionMatrice(SymboleMatrice2(matriceDeJeuEntiers)));       //on affiche la matrice après avoir déplacé les bonbons
     if (VerificationMatrice(matriceDeJeuEntiers) == true)                           //on verifie si il y a un blocage dans la grille
     {
         Console.WriteLine();
-        Console.WriteLine("Fin de la partie. Le plateau de jeu est remplie de bonbons ... Rejouez et faites mieux !");
+        Console.WriteLine("Fin de la partie. Le plateau de jeu est remplie de bonbons et il y a un blocage... Rejouez et faites mieux !");
+        break;
     }
 }
 Console.WriteLine();
@@ -138,7 +140,7 @@ Console.WriteLine("Fin de la partie 😢");
 Console.WriteLine("VOUS AVEZ ATTEINT VOTRE NOMBRE DE COUPS MAXIMALE.");
 Console.WriteLine();
 Console.WriteLine("Mais puisque c'est bientôt 🎄Noël🎄, nous avons une surprise pour vous....");
-Console.WriteLine("ouiSi vous voulez ajouter des coups, vous pouvez! Si vous en voulez repondez par oui, sinon repondez par non.");
+Console.WriteLine("Si vous voulez ajouter des coups, vous pouvez! Si vous en voulez repondez par oui, sinon repondez par non.");
 string coupSup = Console.ReadLine()!;
 if (coupSup == "oui" || coupSup == "Oui")
 {
@@ -185,10 +187,10 @@ if (coupSup == "oui" || coupSup == "Oui")
                     break;
 
                 default:
-                    Console.WriteLine("❌Nombre rentré faux❌");
                     break;
             }
             Console.WriteLine();
+            Console.WriteLine($"Coup numéro {j}");
             AfficherMatrice(ConversionMatrice(SymboleMatrice2(matriceDeJeuEntiers)));       //on affiche la matrice après avoir déplacé les bonbons
             if (VerificationMatrice(matriceDeJeuEntiers) == true)                           //on verifie si il y a un blocage dans la grille
             {
@@ -254,8 +256,8 @@ void MoveLeft(int[,] tab)
                 int colonne = c;
                 while (colonne > 0 && tab[l, colonne - 1] == 0)
                 {
-                    tab[l, colonne - 1] = tab[l, colonne];      //on deplace l'entier d'une colonne vers la gauche 
-                    tab[l, colonne] = 0;
+                    tab[l, colonne - 1] = tab[l, colonne];      //on deplace l'entier (le bonbon) d'une colonne vers la gauche 
+                    tab[l, colonne] = 0;                        //on met sa case initiale à 0
                     colonne--;
                 }
                 if (colonne > 0 && tab[l, colonne - 1] == tab[l, colonne] && tab[l, colonne - 1] != 16)
@@ -282,7 +284,7 @@ void MoveRight(int[,] tab)
                 while (colonne < 3 && tab[l, colonne + 1] == 0)
                 {
                     tab[l, colonne + 1] = tab[l, colonne];      //on deplace l'entier d'une colonne vers la droite
-                    tab[l, colonne] = 0;                        //on met la position du bonbon dans la colonne d'avant a 0
+                    tab[l, colonne] = 0;                        //on met la position initiale du bonbon à 0
                     colonne++;                                  //on refait la meme avec les deux colonnes suivantes doncon augmente l'indice de la colonne
                 }
 
