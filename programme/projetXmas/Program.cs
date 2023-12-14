@@ -63,6 +63,7 @@ void AfficherMatrice(char[,] tab)
 //programme du jeu
 Console.WriteLine();
 Console.WriteLine("Bienvenue sur 🍭🍭🍭CANDYMIX🍭🍭🍭");
+Console.WriteLine();
 Console.WriteLine("Connaissez-vous les règles du jeu ? Repondez par oui ou non.");
 string reponse = Console.ReadLine()!;
 
@@ -81,7 +82,7 @@ Console.WriteLine("✨Parfait, c'est parti !✨");
 
 >>>>>>> kami
 Console.WriteLine();
-Console.WriteLine("🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄");
+Console.WriteLine("🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄");
 Console.WriteLine("Choissisez le nombre de coups autorisés:");
 int nbCoups = Convert.ToInt32(Console.ReadLine()!);
 Console.WriteLine($"✨Vous avez choisi de jouer en {nbCoups} coups, c'est parti !✨");
@@ -152,6 +153,7 @@ if (coupSup=="oui" || coupSup=="Oui")
 {
     Console.WriteLine("Pour gagner des coups supplémentaires, repondez à l'enigme suivante....");
     Console.WriteLine("Girafe = 3, Éléphant = 3, Hippopotame = 5, Lion = ... ?");  
+<<<<<<< HEAD
 }
 else 
 {
@@ -175,6 +177,16 @@ if (enigme==2)
         AfficherMatrice(ConversionMatrice(matriceDeJeuEntiers));
         for (int i = 0; i < 5; i++)
 =======
+=======
+    int enigme=Convert.ToInt32(Console.ReadLine()!);
+    if (enigme==2)
+    {
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine("⭐️⭐️⭐️Bien joué⭐️⭐️⭐️");
+        Console.WriteLine("Vous avez obtenu 5 coups supplémentaires.");
+        AfficherMatrice(ConversionMatrice(matriceDeJeuEntiers));
+>>>>>>> kami
         for (int j = 0; j < 5; j++)
 >>>>>>> kami
         {
@@ -204,6 +216,9 @@ if (enigme==2)
                 break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> kami
                 case 6:
                 //chercher cases ou se trouvent les bonbons et les deplacer le plus proche possible de la position [i,3]
                 MoveRight(matriceDeJeuEntiers);
@@ -229,16 +244,20 @@ if (enigme==2)
         }
         Console.WriteLine();
         Console.WriteLine("Vous avez atteint votre nombre de coups maximale, la partie est finie.");      
-        Console.WriteLine("Rejouez et faites un meilleur score !");  
- }   
+        Console.WriteLine("Rejouez et faites un meilleur score !");        
+    }   
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> kami
     else
     {
         Console.WriteLine();
         Console.WriteLine("Bien tenté mais c'est la mauvaise réponse. Recommencez une nouvelle partie!");
         Console.WriteLine("----------------------------------------------------------------------------");
     }
+<<<<<<< HEAD
 }
 =======
 >>>>>>> kami
@@ -252,6 +271,8 @@ else
 =======
     Console.WriteLine("Bien tenté mais c'est la mauvaise réponse. Recommencez une nouvelle partie!");
     Console.WriteLine("----------------------------------------------------------------------------");
+>>>>>>> kami
+=======
 >>>>>>> kami
 }
 Console.WriteLine();
