@@ -63,6 +63,7 @@ void AfficherMatrice(char[,] tab)
 //programme du jeu
 Console.WriteLine();
 Console.WriteLine("Bienvenue sur 🍭🍭🍭CANDYMIX🍭🍭🍭");
+Console.WriteLine();
 Console.WriteLine("Connaissez-vous les règles du jeu ? Repondez par oui ou non.");
 string reponse = Console.ReadLine()!;
 
@@ -77,7 +78,7 @@ else
 }
 
 Console.WriteLine();
-Console.WriteLine("🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄");
+Console.WriteLine("🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄🍭🎄");
 Console.WriteLine("Choissisez le nombre de coups autorisés:");
 int nbCoups = Convert.ToInt32(Console.ReadLine()!);
 Console.WriteLine($"✨Vous avez choisi de jouer en {nbCoups} coups, c'est parti !✨");
@@ -143,20 +144,14 @@ if (coupSup=="oui" || coupSup=="Oui")
 {
     Console.WriteLine("Pour gagner des coups supplémentaires, repondez à l'enigme suivante....");
     Console.WriteLine("Girafe = 3, Éléphant = 3, Hippopotame = 5, Lion = ... ?");  
-}
-else 
-{
-    Console.WriteLine("Dommage... Refaites une partie et améliorez votre score !");
-}
-
-int enigme=Convert.ToInt32(Console.ReadLine()!);
-if (enigme==2)
-{
-    Console.WriteLine();
-    Console.WriteLine();
-    Console.WriteLine("⭐️⭐️⭐️Bien joué⭐️⭐️⭐️");
-    Console.WriteLine("Vous avez obtenu 5 coups supplémentaires.");
-    AfficherMatrice(ConversionMatrice(matriceDeJeuEntiers));
+    int enigme=Convert.ToInt32(Console.ReadLine()!);
+    if (enigme==2)
+    {
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine("⭐️⭐️⭐️Bien joué⭐️⭐️⭐️");
+        Console.WriteLine("Vous avez obtenu 5 coups supplémentaires.");
+        AfficherMatrice(ConversionMatrice(matriceDeJeuEntiers));
         for (int j = 0; j < 5; j++)
         {
             int deplacement=0;
@@ -184,6 +179,11 @@ if (enigme==2)
                 MoveDown(matriceDeJeuEntiers);
                 break;
 
+                case 6:
+                //chercher cases ou se trouvent les bonbons et les deplacer le plus proche possible de la position [i,3]
+                MoveRight(matriceDeJeuEntiers);
+                break;
+            
                 default:
                 Console.WriteLine("❌Nombre rentré faux❌");
                 break;
@@ -199,15 +199,15 @@ if (enigme==2)
         }
         Console.WriteLine();
         Console.WriteLine("Vous avez atteint votre nombre de coups maximale, la partie est finie.");      
-        Console.WriteLine("Rejouez et faites un meilleur score !");  
- }   
+        Console.WriteLine("Rejouez et faites un meilleur score !");        
+    }   
 
-
-else
-{
-    Console.WriteLine();
-    Console.WriteLine("Bien tenté mais c'est la mauvaise réponse. Recommencez une nouvelle partie!");
-    Console.WriteLine("----------------------------------------------------------------------------");
+    else
+    {
+        Console.WriteLine();
+        Console.WriteLine("Bien tenté mais c'est la mauvaise réponse. Recommencez une nouvelle partie!");
+        Console.WriteLine("----------------------------------------------------------------------------");
+    }
 }
 Console.WriteLine();
 Console.WriteLine("🍭Fin de la partie🍭");      
